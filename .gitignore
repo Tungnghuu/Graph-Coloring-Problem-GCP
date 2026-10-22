@@ -1,3 +1,5 @@
-.vscode
+\.vscode
 .log
 .env
+\lib
+*__pycache__
