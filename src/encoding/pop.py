@@ -1,5 +1,6 @@
 from pysat.formula import CNF
 from .base import Encoding
+from ..utils.graph_validation import validate_encoding_input
 
 class POPEncoding(Encoding):
     def __init__(self, symmetry_breaking: bool = False):
@@ -9,36 +10,13 @@ class POPEncoding(Encoding):
         self._k = 0
 
     def encode(self, graph, k: int) -> CNF:
-        if isinstance(k, bool) or not isinstance(k, int):
-            raise TypeError("k must be an integer")
-        if k < 0:
-            raise ValueError("k must be non-negative")
-
-        n = graph.n
-        if isinstance(n, bool) or not isinstance(n, int):
-            raise TypeError("graph.n must be an integer")
-        if n < 0:
-            raise ValueError("graph.n must be non-negative")
-
-        edges = list(graph.edges)
-
-        for u, v in edges:
-            for endpoint in (u, v):
-                if isinstance(endpoint, bool) or not isinstance(endpoint, int):
-                    raise TypeError("edge endpoints must be integers")
-                if not 0 <= endpoint < n:
-                    raise ValueError(
-                        "edge endpoints must be in range(graph.n)"
-                    )
+        n, edges = validate_encoding_input(graph, k)
 
         self._n, self._k = n, k
-
-        # x[v, i]: v uses color i
-        # must be positive and unique
         self.x_vars = {
-            (v, i): v * k + i
+            (v, color): v * k + color + 1
             for v in range(n)
-            for i in range(1, k + 1)
+            for color in range(k)
         }
 
         x = self.x_vars
@@ -51,53 +29,24 @@ class POPEncoding(Encoding):
 
         # ALO: each vertex must have ALO color
         for v in range(n):
-            cnf.append([x[v, i] for i in range(1, k + 1)])
+            cnf.append([x[v, color] for color in range(k)])
 
         # AMO: each vertex must have AMO color
         for v in range(n):
-            for i in range(1, k + 1):
-                for j in range(i + 1, k + 1):
-                    cnf.append([-x[v, i], -x[v, j]])
+            for color in range(k):
+                for other_color in range(color + 1, k):
+                    cnf.append([-x[v, color], -x[v, other_color]])
 
         # Adjacent vertices cannot share a color
         for u, v in edges:
-            for i in range(1, k + 1):
-                cnf.append([-x[u, i], -x[v, i]])
+            for color in range(k):
+                cnf.append([-x[u, color], -x[v, color]])
 
         # Introduce a canonical order for first-use of colors.
         if self.symmetry_breaking:
             for v in range(min(n, k)):
                 cnf.append(
-                    [-x[v, i] for i in range(v + 2, k + 1)]
-                    + [x[v, v + 1]]
+                    [-x[v, color] for color in range(v + 1, k)]
+                    + [x[v, v]]
                 )
         return cnf
-
-    def decode_model(self, model: list[int]) -> list[int]:
-        if self._n is None:
-            raise RuntimeError(
-                "encode() must be called before decode_model()"
-            )
-        if model is None:
-            raise ValueError(
-                "cannot decode an absent or unsatisfiable model"
-            )
-
-        positive = {literal for literal in model if literal > 0}
-        colors = []
-
-        for v in range(self._n):
-            assigned = [
-                i - 1
-                for i in range(1, self._k + 1)
-                if self.x_vars[v, i] in positive
-            ]
-
-            if len(assigned) != 1:
-                raise ValueError(
-                    f"model must assign exactly one color to vertex {v}"
-                )
-
-            colors.append(assigned[0])
-
-        return colors
