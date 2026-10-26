@@ -3,3 +3,5 @@
 .env
 \lib
 *__pycache__
+chromatic_number
+exp_1.py
