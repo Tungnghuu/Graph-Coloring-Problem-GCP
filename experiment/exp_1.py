@@ -2,6 +2,7 @@ from pathlib import Path
 from src.utils.graph_io import read_col
 from src.encoding import POHPEncoding, SATEncoding
 from src.chromatic_number.repeated_sat import RepeatedSAT
+from src.chromatic_number.incremental_sat import IncrementalSAT
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +21,7 @@ graph_name = col_path.stem
 results_path = ROOT_DIR / "results" / f"{graph_name}_res.csv"
 
 # Run RepeatedSAT
-solver = RepeatedSAT()
+solver = IncrementalSAT()
 
 chromatic_number = solver.find_chromatic_number(
     graph=graph,

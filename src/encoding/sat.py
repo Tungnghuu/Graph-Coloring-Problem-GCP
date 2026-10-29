@@ -37,9 +37,8 @@ class SATEncoding(Encoding):
                 cnf.append([-self.x_vars[u, color], -self.x_vars[v, color]])
 
         if self.symmetry_breaking:
+            # A canonical relabeling gives vertex v a color no greater than v.
             for v in range(min(n, k)):
-                cnf.append(
-                    [-self.x_vars[v, color] for color in range(v + 1, k)]
-                    + [self.x_vars[v, v]]
-                )
+                for color in range(v + 1, k):
+                    cnf.append([-self.x_vars[v, color]])
         return cnf
