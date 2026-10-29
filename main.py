@@ -10,7 +10,7 @@ encodings = {
     "POHP": POHPEncoding(),
 }
 
-k = 10
+k = 11
 
 for name, encoding in encodings.items():
     result = run_benchmark(encoding, graph, k, time_limit = 5)
