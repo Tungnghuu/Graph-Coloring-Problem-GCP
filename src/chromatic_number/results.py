@@ -4,11 +4,12 @@ from pathlib import Path
 
 class ResultsWriter:
     def __init__(self, col_file_path):
-        # Get the graph name from the .col file
-        graph_name = Path(col_file_path).stem
-
-        # Create the results file name
-        self.file_path = Path("results") / f"{graph_name}.csv"
+        # Honor explicit CSV paths; graph paths keep the existing convention.
+        path = Path(col_file_path)
+        self.file_path = (
+            path if path.suffix.lower() == ".csv"
+            else Path("results") / f"{path.stem}.csv"
+        )
 
         # Create the results folder if needed
         self.file_path.parent.mkdir(

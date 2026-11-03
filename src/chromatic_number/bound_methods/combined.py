@@ -1,5 +1,5 @@
-from bound_methods.clique import Clique
-from bound_methods.greedy import Greedy
+from .clique import Clique
+from .greedy import Greedy
 
 class CombinedBounds:
     def __init__(self):
