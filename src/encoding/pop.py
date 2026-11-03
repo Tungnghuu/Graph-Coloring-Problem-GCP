@@ -3,7 +3,7 @@ from .base import Encoding
 from ..utils.graph_validation import validate_encoding_input
 
 class POPEncoding(Encoding):
-    def __init__(self, symmetry_breaking: bool = False):
+    def __init__(self, symmetry_breaking: bool = True):
         self.symmetry_breaking = symmetry_breaking
         self.x_vars: dict[tuple[int, int], int] = {}
         self._n = None

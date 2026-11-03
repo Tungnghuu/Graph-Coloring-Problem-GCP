@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,bounds_time,encoding_time,solving_time,total_time
+IncrementalSAT,SATEncoding,11,SAT,1518,13206,0.003412899997783825,0.022317000024486333,0.012228100007632747,0.037958000029902905
