@@ -6,14 +6,14 @@ from src.chromatic_number.repeated_sat import RepeatedSAT
 ROOT_DIR = Path(__file__).resolve().parent.parent
 
 # Read graph
-col_path = ROOT_DIR / "data" / "instances" / "anna.col"
+col_path = ROOT_DIR / "data" / "instances" / "DSJC125.9.col"
 graph = read_col(str(col_path))
 
 # Create encoding
 encoding = POHPEncoding()
 
 # Lower and upper bounds
-bounds = [1, 15]
+bounds = [1, graph.n]
 
 # Create result file name
 graph_name = col_path.stem
