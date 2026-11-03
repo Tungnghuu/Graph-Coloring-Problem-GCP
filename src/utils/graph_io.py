@@ -12,6 +12,7 @@ class Graph:
 def read_col(filepath):
     n = 0
     edges = []
+    seen_edges = set()
 
     with open(filepath, "r") as f:
         for line in f:
@@ -29,7 +30,8 @@ def read_col(filepath):
 
                 edge = (min(u, v), max(u, v))
 
-                if edge not in edges:
+                if edge not in seen_edges:
+                    seen_edges.add(edge)
                     edges.append(edge)
 
     colors = [None] * n

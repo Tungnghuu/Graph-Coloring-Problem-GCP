@@ -4,7 +4,7 @@ from ..utils.graph_validation import validate_encoding_input
 
 class SATEncoding(Encoding):
     """Direct one-hot encoding of graph coloring."""
-    def __init__(self, symmetry_breaking = False):
+    def __init__(self, symmetry_breaking = True):
         self.symmetry_breaking = symmetry_breaking
         self.x_vars = {}
         self._n = None

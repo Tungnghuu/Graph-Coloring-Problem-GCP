@@ -1,24 +1,24 @@
 from pathlib import Path
 from src.utils.graph_io import read_col
-from src.encoding import POHPEncoding, SATEncoding
+from src.encoding import SATEncoding, POPEncoding, POHPEncoding
 from src.chromatic_number.repeated_sat import RepeatedSAT
 from src.chromatic_number.incremental_sat import IncrementalSAT
-
-ROOT_DIR = Path(__file__).resolve().parent.parent
+from src.chromatic_number.bound_methods.combined import CombinedBounds
 
 # Read graph
-col_path = ROOT_DIR / "data" / "instances" / "DSJC125.9.col"
+col_path = Path("data") / "instances" / "DSJC125.9.col"
 graph = read_col(str(col_path))
 
 # Create encoding
 encoding = POHPEncoding()
 
 # Lower and upper bounds
-bounds = [1, graph.n]
+bounds = CombinedBounds()
+print(RepeatedSAT._find_bounds(graph, bounds))
 
 # Create result file name
 graph_name = col_path.stem
-results_path = ROOT_DIR / "results" / f"{graph_name}_res.csv"
+results_path = Path("results") / "exp" / f"{graph_name}_res.csv"
 
 # Run RepeatedSAT
 solver = IncrementalSAT()
@@ -28,6 +28,7 @@ chromatic_number = solver.find_chromatic_number(
     encoding=encoding,
     bounds_method=bounds,
     results_path=str(results_path),
+    time_limit=20,
 )
 
 print("Graph:", graph_name)
