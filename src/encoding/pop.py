@@ -42,11 +42,9 @@ class POPEncoding(Encoding):
             for color in range(k):
                 cnf.append([-x[u, color], -x[v, color]])
 
-        # Introduce a canonical order for first-use of colors.
+        # A canonical relabeling gives vertex v a color no greater than v.
         if self.symmetry_breaking:
             for v in range(min(n, k)):
-                cnf.append(
-                    [-x[v, color] for color in range(v + 1, k)]
-                    + [x[v, v]]
-                )
+                for color in range(v + 1, k):
+                    cnf.append([-x[v, color]])
         return cnf
