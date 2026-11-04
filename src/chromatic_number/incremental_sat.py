@@ -7,7 +7,7 @@ from pysat.solvers import Solver
 
 from src.chromatic_number.base import ChromaticNumberSolver
 from src.chromatic_number.results import ResultsWriter
-
+from src.utils.graph_validation import is_valid_coloring
 
 class IncrementalSAT(ChromaticNumberSolver):
     def __init__(self):
@@ -31,6 +31,7 @@ class IncrementalSAT(ChromaticNumberSolver):
         if not callable(getattr(encoding, "forbid_color", None)):
             raise TypeError("encoding must support forbid_color()")
 
+        graph.colors = [None] * graph.n
         start = perf_counter()
         deadline = (
             start + total_time_limit
@@ -62,7 +63,7 @@ class IncrementalSAT(ChromaticNumberSolver):
                     remaining_time = deadline - perf_counter()
                     if remaining_time <= 0:
                         self.status = "TIMEOUT"
-                        return self.best_k
+                        break
                     if (
                         attempt_time_limit is None
                         or remaining_time < attempt_time_limit
@@ -79,6 +80,12 @@ class IncrementalSAT(ChromaticNumberSolver):
                     "UNSAT" if satisfiable is False else "TIMEOUT"
                 )
 
+                if satisfiable is True:
+                    self.best_k = k
+                    self.best_model = solver.get_model()
+                    graph.colors = encoding.decode_model(self.best_model)
+                valid_coloring = is_valid_coloring(graph)
+
                 if results is not None:
                     results.save({
                         "method": "IncrementalSAT",
@@ -87,6 +94,7 @@ class IncrementalSAT(ChromaticNumberSolver):
                         "status": self.status,
                         "num_variables": cnf.nv,
                         "num_clauses": num_clauses,
+                        "valid_coloring": valid_coloring,
                         "bounds_time": bounds_time if first_attempt else 0,
                         "encoding_time": encoding_time,
                         "solving_time": solving_time,
@@ -98,55 +106,12 @@ class IncrementalSAT(ChromaticNumberSolver):
 
                 if satisfiable is None:
                     # Preserve the best feasible coloring found before timeout.
-                    return self.best_k
+                    break
                 if satisfiable is False:
-                    return self.best_k
+                    break
 
-                self.best_k = k
-                self.best_model = solver.get_model()
-                graph.colors = encoding.decode_model(self.best_model)
-
+        encoding.release()
         return self.best_k
-
-    @staticmethod
-    def _find_bounds(graph, bounds_method):
-        if callable(getattr(bounds_method, "find_bounds", None)):
-            bounds = bounds_method.find_bounds(graph)
-        elif (
-            callable(getattr(bounds_method, "find_lower_bound", None))
-            and callable(getattr(bounds_method, "find_upper_bound", None))
-        ):
-            bounds = (
-                bounds_method.find_lower_bound(graph),
-                bounds_method.find_upper_bound(graph),
-            )
-        else:
-            bounds = bounds_method
-
-        try:
-            lower, upper = bounds
-        except (TypeError, ValueError) as error:
-            raise ValueError("bounds must contain a lower and an upper bound") from error
-        if any(isinstance(b, bool) or not isinstance(b, int) for b in (lower, upper)):
-            raise TypeError("bounds must be integers")
-        if not 0 <= lower <= upper:
-            raise ValueError("bounds must satisfy 0 <= lower <= upper")
-        return lower, upper
-
-    @staticmethod
-    def _validate_time_limit(time_limit):
-        if time_limit is not None:
-            if isinstance(time_limit, bool) or not isinstance(time_limit, Real):
-                raise TypeError("time_limit must be a number of seconds or None")
-            if not isfinite(time_limit) or time_limit <= 0:
-                raise ValueError("time_limit must be a positive finite number")
-
-    @staticmethod
-    def _validate_bounds_time(bounds_time):
-        if isinstance(bounds_time, bool) or not isinstance(bounds_time, Real):
-            raise TypeError("bounds_time must be a non-negative number of seconds")
-        if not isfinite(bounds_time) or bounds_time < 0:
-            raise ValueError("bounds_time must be a non-negative finite number")
 
     @staticmethod
     def _solve(solver, time_limit):

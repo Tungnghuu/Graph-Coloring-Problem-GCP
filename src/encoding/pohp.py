@@ -1,10 +1,8 @@
 from pysat.formula import CNF
-
-from .base import Encoding
+from .base import CNFEncoding
 from ..utils.graph_validation import validate_encoding_input
 
-
-class POHPEncoding(Encoding):
+class POHPEncoding(CNFEncoding):
     def __init__(self, symmetry_breaking: bool = True):
         self.symmetry_breaking = symmetry_breaking
         self.x_vars: dict[tuple[int, int], int] = {}
