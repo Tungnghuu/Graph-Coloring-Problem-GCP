@@ -1,7 +1,6 @@
 import csv
 from pathlib import Path
 
-
 class ResultsWriter:
     FIELDNAMES = [
         "method",
@@ -10,6 +9,7 @@ class ResultsWriter:
         "status",
         "num_variables",
         "num_clauses",
+        "valid_coloring",
         "bounds_time",
         "encoding_time",
         "solving_time",

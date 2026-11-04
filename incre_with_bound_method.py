@@ -4,23 +4,22 @@ from time import perf_counter
 from src.chromatic_number.bound_methods.combined import CombinedBounds
 from src.chromatic_number.incremental_sat import IncrementalSAT
 from src.encoding import POHPEncoding, POPEncoding, SATEncoding
-from src.utils.graph_io import read_col
-
+from src.utils.graph_io import read_col, sort_col_files_by_vertex_count
+from src.utils.graph_validation import is_valid_coloring
 
 PROJECT_DIR = Path(__file__).resolve().parent
 INSTANCES_DIR = PROJECT_DIR / "data" / "instances"
 RESULTS_DIR = PROJECT_DIR / "results" / "Incremental" / "with_bm"
-TIME_LIMIT = 20
-TOTAL_TIME_LIMIT = 60
+TIME_LIMIT = 30
+TOTAL_TIME_LIMIT = None
 ENCODINGS = (
     ("SAT", SATEncoding),
     ("POP", POPEncoding),
     ("POHP", POHPEncoding),
 )
 
-
 def main():
-    graph_paths = sorted(INSTANCES_DIR.glob("*.col"))
+    graph_paths = sort_col_files_by_vertex_count(INSTANCES_DIR.glob("*.col"))
     if not graph_paths:
         raise FileNotFoundError(f"No .col graph files found in {INSTANCES_DIR}")
 
@@ -65,10 +64,10 @@ def main():
                 f"Encoding: {encoding_name} | "
                 f"Chromatic number: {chromatic_number} | "
                 f"Status: {solver.status} | "
+                f"Valid coloring: {is_valid_coloring(graph)} | "
                 f"Results: {results_path.relative_to(PROJECT_DIR)}",
                 flush=True,
             )
-
 
 if __name__ == "__main__":
     main()

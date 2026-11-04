@@ -1,0 +1,3 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+BinarySearchSAT,POPEncoding,9,SAT,441,6133,True,0.001989800000046671,0.0113219000004392,0.005404499999713153,0.018716200000199024
+BinarySearchSAT,POPEncoding,7,SAT,343,4431,True,0,0.006175700000312645,0.004303299999264709,0.010478999999577354
