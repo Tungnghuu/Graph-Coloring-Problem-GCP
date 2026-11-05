@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,POPEncoding,20,SAT,2560,48038,True,0.006313100006082095,0.049100999996881,0.024434800012386404,0.0798489000153495
