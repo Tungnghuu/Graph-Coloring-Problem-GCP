@@ -1,17 +1,17 @@
 from pathlib import Path
 from src.utils.graph_io import read_col
-from src.encoding import SATEncoding, POPEncoding, POHPEncoding
+from src.encoding import SATEncoding, POPEncoding, POHPEncoding, CPLEXCPEncoding, GurobiILPEncoding, CPLEXMIPEncoding
 from src.chromatic_number.repeated_sat import RepeatedSAT
 from src.chromatic_number.incremental_sat import IncrementalSAT
 from src.chromatic_number.binarySearch_sat import BinarySearchSAT
 from src.chromatic_number.bound_methods.combined import CombinedBounds
 
 # Read graph
-col_path = Path("data") / "instances" / "DSJC125_9.col"
+col_path = Path("data") / "250" / "DSJC250_9.col"
 graph = read_col(str(col_path))
 
 # Create encoding
-encoding = POHPEncoding()
+encoding = CPLEXCPEncoding()
 
 # Lower and upper bounds
 bounds = CombinedBounds()
@@ -22,7 +22,7 @@ graph_name = col_path.stem
 results_path = Path("results") / "exp" / f"{graph_name}_res.csv"
 
 # Run RepeatedSAT
-solver = BinarySearchSAT()
+solver = RepeatedSAT()
 
 chromatic_number = solver.find_chromatic_number(
     graph=graph,

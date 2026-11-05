@@ -2,8 +2,8 @@ from src.encoding import SATEncoding, POPEncoding, POHPEncoding
 from src.benchmark.single_benchmark import run_benchmark
 from src.utils.graph_io import read_col
 
-graph = read_col("data/instances/anna.col")
-graph1 = read_col("data/instances/DSJC125.9.col")
+graph = read_col("data/250/anna.col")
+graph1 = read_col("data/250/DSJC125_9.col")
 
 encodings = {
     "SAT": SATEncoding(),

@@ -3,3 +3,6 @@
 .env
 \lib
 *__pycache__
+gcp_preprocess.py
+gcp_postprocess.py
+\exp

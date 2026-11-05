@@ -83,7 +83,7 @@ def draw_graph(graph):
     webbrowser.open("file:///" + output_path.replace("\\", "/"))
 
 if __name__ == "__main__":
-    graph = read_col("data/instances/anna.col")
+    graph = read_col("data/instances/250/anna.col")
     graph.colors = [None] * 139
 
     for v in graph.get_vertices():
