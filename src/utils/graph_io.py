@@ -70,7 +70,7 @@ def sort_col_files_by_vertex_count(filepaths):
     )
 
 if __name__ == "__main__":
-    graph = read_col("data/instances/anna.col")
+    graph = read_col("data/instances/250/anna.col")
 
     print("Number of vertices:", graph.n)
     print("Number of edges:", len(graph.edges))

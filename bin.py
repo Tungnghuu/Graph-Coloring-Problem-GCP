@@ -16,7 +16,8 @@ from src.utils.graph_io import read_col, sort_col_files_by_vertex_count
 from src.utils.graph_validation import is_valid_coloring
 
 PROJECT_DIR = Path(__file__).resolve().parent
-INSTANCES_DIR = PROJECT_DIR / "data" / "instances"
+INSTANCES_DIR = PROJECT_DIR / "data"
+SIZE_FOLDER = "100_or_less"
 RESULTS_DIR = PROJECT_DIR / "results" / "Binary" / "with_bm"
 TIME_LIMIT = 30
 TOTAL_TIME_LIMIT = None
@@ -30,11 +31,12 @@ ENCODINGS = (
 )
 
 def main():
-    graph_paths = sort_col_files_by_vertex_count(INSTANCES_DIR.glob("*.col"))
+    dataset_dir = INSTANCES_DIR / SIZE_FOLDER
+    graph_paths = sort_col_files_by_vertex_count(dataset_dir.glob("*.col"))
     if not graph_paths:
-        raise FileNotFoundError(f"No .col graph files found in {INSTANCES_DIR}")
+        raise FileNotFoundError(f"No .col graph files found in {dataset_dir}")
 
-    print(f"Found {len(graph_paths)} graphs in {INSTANCES_DIR}", flush=True)
+    print(f"Found {len(graph_paths)} graphs in {dataset_dir}", flush=True)
 
     for graph_index, graph_path in enumerate(graph_paths, start=1):
         print(
@@ -51,7 +53,9 @@ def main():
             print(f"  Starting {encoding_name} encoding...", flush=True)
             encoding = encoding_type()
             results_path = (
-                RESULTS_DIR / f"{graph_path.stem}_{encoding_name}_res.csv"
+                RESULTS_DIR
+                / graph_path.parent.name
+                / f"{graph_path.stem}_{encoding_name}_res.csv"
             )
             solver = BinarySearchSAT()
 
