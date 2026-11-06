@@ -1,5 +1,6 @@
 import argparse
 import csv
+import importlib.util
 from pathlib import Path
 from time import perf_counter
 
@@ -19,6 +20,24 @@ from src.solver import CPLEXSolver, GurobiSolver, SATSolver
 from src.utils.graph_io import read_col, sort_col_files_by_vertex_count
 from src.utils.graph_validation import is_valid_coloring
 
+try:
+    import gurobipy
+except ImportError:
+    class _MissingGurobiError(Exception):
+        pass
+
+    GUROBI_ERROR = _MissingGurobiError
+else:
+    GUROBI_ERROR = gurobipy.GurobiError
+
+try:
+    from cplex.exceptions.errors import CplexSolverError
+    from docplex.mp.utils import DOcplexLimitsExceeded
+except ImportError:
+    CPLEX_ERRORS = ()
+else:
+    CPLEX_ERRORS = (CplexSolverError, DOcplexLimitsExceeded)
+
 PROJECT_DIR = Path(__file__).resolve().parent
 DEFAULT_DATASET = "100_or_less"
 DEFAULT_OUTPUT = PROJECT_DIR / "results" / "benchmark_summary.csv"
@@ -31,6 +50,11 @@ ENCODINGS = {
     "CPLEX_MIP": (CPLEXMIPEncoding, CPLEXSolver),
     "CPLEX_CP": (CPLEXCPEncoding, CPLEXSolver),
 }
+ENCODING_DEPENDENCIES = {
+    "Gurobi_ILP": ("gurobipy",),
+    "CPLEX_MIP": ("docplex.mp",),
+    "CPLEX_CP": ("docplex.cp",),
+}
 METHODS = {
     "repeated": RepeatedSAT,
     "binary": BinarySearchSAT,
@@ -40,6 +64,13 @@ SUMMARY_FIELDS = [
     "graph", "vertices", "edges", "method", "encoding", "status",
     "chromatic_number", "valid_coloring", "bounds_time", "elapsed_time",
 ]
+
+
+def _module_available(module_name: str) -> bool:
+    try:
+        return importlib.util.find_spec(module_name) is not None
+    except ModuleNotFoundError:
+        return False
 
 
 def run_benchmark(
@@ -57,6 +88,27 @@ def run_benchmark(
     if not graph_paths:
         raise FileNotFoundError(f"No .col graph files found in {dataset_dir}")
 
+    available_encodings = []
+    for encoding_name in encoding_names:
+        missing = [
+            module
+            for module in ENCODING_DEPENDENCIES.get(encoding_name, ())
+            if not _module_available(module)
+        ]
+        if missing:
+            print(
+                f"Skipping {encoding_name}: missing package(s) "
+                f"{', '.join(missing)}.",
+                flush=True,
+            )
+        else:
+            available_encodings.append(encoding_name)
+    if not available_encodings:
+        raise RuntimeError(
+            "None of the selected encodings has its required dependencies "
+            "installed."
+        )
+
     output.parent.mkdir(parents=True, exist_ok=True)
     with output.open("w", newline="") as file:
         writer = csv.DictWriter(file, fieldnames=SUMMARY_FIELDS)
@@ -73,7 +125,7 @@ def run_benchmark(
             )
 
             for method_name in methods:
-                for encoding_name in encoding_names:
+                for encoding_name in available_encodings:
                     if method_name == "incremental" and encoding_name not in {
                         "SAT", "POP", "POHP"
                     }:
@@ -91,7 +143,35 @@ def run_benchmark(
                         / f"{graph_path.stem}_{method_name}_{encoding_name}.csv"
                     )
                     start = perf_counter()
-                    if method_name == "incremental":
+                    if encoding_name == "Gurobi_ILP":
+                        try:
+                            chromatic_number = solver.find_chromatic_number(
+                                graph, encoding, bounds, str(attempt_path),
+                                solver=solver_type(), time_limit=time_limit,
+                                bounds_time=bounds_time,
+                            )
+                        except GUROBI_ERROR as error:
+                            chromatic_number = None
+                            solver.status = f"ERROR: {error}"
+                            print(
+                                f"  {method_name}/{encoding_name}: {solver.status}",
+                                flush=True,
+                            )
+                    elif encoding_name in {"CPLEX_MIP", "CPLEX_CP"}:
+                        try:
+                            chromatic_number = solver.find_chromatic_number(
+                                graph, encoding, bounds, str(attempt_path),
+                                solver=solver_type(), time_limit=time_limit,
+                                bounds_time=bounds_time,
+                            )
+                        except CPLEX_ERRORS as error:
+                            chromatic_number = None
+                            solver.status = f"ERROR: {error}"
+                            print(
+                                f"  {method_name}/{encoding_name}: {solver.status}",
+                                flush=True,
+                            )
+                    elif method_name == "incremental":
                         chromatic_number = solver.find_chromatic_number(
                             graph, encoding, bounds, str(attempt_path),
                             time_limit=time_limit, bounds_time=bounds_time,
@@ -103,13 +183,16 @@ def run_benchmark(
                             bounds_time=bounds_time,
                         )
                     elapsed_time = perf_counter() - start
+                    run_status = (
+                        "SOLVED" if chromatic_number is not None else solver.status
+                    )
                     writer.writerow({
                         "graph": graph_path.stem,
                         "vertices": graph.n,
                         "edges": len(graph.edges),
                         "method": method_name,
                         "encoding": encoding_name,
-                        "status": solver.status,
+                        "status": run_status,
                         "chromatic_number": chromatic_number,
                         "valid_coloring": is_valid_coloring(graph),
                         "bounds_time": bounds_time,
@@ -118,7 +201,7 @@ def run_benchmark(
                     file.flush()
                     print(
                         f"  {method_name}/{encoding_name}: "
-                        f"k={chromatic_number}, status={solver.status}",
+                        f"k={chromatic_number}, status={run_status}",
                         flush=True,
                     )
 
