@@ -1,21 +1,13 @@
-from src.encoding import SATEncoding, POPEncoding, POHPEncoding
-from src.benchmark.single_benchmark import run_benchmark
-from src.utils.graph_io import read_col
+from benchmark import parse_args, run_benchmark
 
-graph = read_col("data/250/anna.col")
-graph1 = read_col("data/250/DSJC125_9.col")
 
-encodings = {
-    "SAT": SATEncoding(),
-    "POP": POPEncoding(),
-    "POHP": POHPEncoding(),
-}
-
-k = 15
-
-for name, encoding in encodings.items():
-    result = run_benchmark(encoding, graph, k, time_limit = 5)
-    print(f"{name}")
-    for metric, value in result.items():
-        print(f"{metric}: {value}")
-    print("\n")
+if __name__ == "__main__":
+    args = parse_args()
+    run_benchmark(
+        args.dataset,
+        args.methods,
+        args.encodings,
+        args.time_limit,
+        args.output,
+        args.limit,
+    )
