@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,GurobiILPEncoding,31,SAT,19251,434125,True,0.10710569994989783,4.171510400017723,0.06008189998101443,4.338697999948636

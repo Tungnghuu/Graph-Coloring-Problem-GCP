@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,SATEncoding,31,SAT,19251,722890,True,0.10710569994989783,2.311081300023943,0.5978209000313655,3.0160079000052065

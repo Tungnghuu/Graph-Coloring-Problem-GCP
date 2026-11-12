@@ -38,9 +38,13 @@ class Solver(ABC):
     @staticmethod
     def validate_time_limit(time_limit: float | None) -> None:
         if time_limit is not None:
-            if isinstance(time_limit, bool) or not isinstance(time_limit, Real):
+            is_boolean = isinstance(time_limit, bool)
+            is_number = isinstance(time_limit, Real)
+            if is_boolean or not is_number:
                 raise TypeError("time_limit must be a number of seconds or None")
-            if not isfinite(time_limit) or time_limit <= 0:
+
+            is_finite = isfinite(time_limit)
+            if not is_finite or time_limit <= 0:
                 raise ValueError("time_limit must be a positive finite number")
 
 class SATSolver(Solver):
@@ -62,6 +66,7 @@ class SATSolver(Solver):
             if time_limit is None:
                 satisfiable = solver.solve()
             else:
+                # Interrupt the solver after the requested time limit
                 timer = Timer(time_limit, solver.interrupt)
                 timer.daemon = True
                 timer.start()
@@ -72,7 +77,9 @@ class SATSolver(Solver):
                     timer.join()
                     solver.clear_interrupt()
 
-            solution = solver.get_model() if satisfiable is True else None
+            solution = None
+            if satisfiable is True:
+                solution = solver.get_model()
 
         return SolveResult(satisfiable=satisfiable, solution=solution)
 
@@ -120,7 +127,6 @@ class GurobiSolver(Solver):
             raise TypeError("GurobiSolver requires a gurobipy Model")
         model.dispose()
 
-
 class CPLEXMIPSolver(Solver):
     def solve(self, model: Any, time_limit: float | None = None) -> SolveResult:
         self.validate_time_limit(time_limit)
@@ -167,7 +173,6 @@ class CPLEXMIPSolver(Solver):
             raise TypeError("CPLEXILPSolver requires a DOcplex MP Model")
         model.end()
 
-
 class CPLEXCPSolver(Solver):
     def solve(self, model: Any, time_limit: float | None = None) -> SolveResult:
         self.validate_time_limit(time_limit)
@@ -180,6 +185,7 @@ class CPLEXCPSolver(Solver):
 
         if not isinstance(model, CpoModel):
             raise TypeError("CPLEXCPSolver requires a DOcplex CP model")
+
         options = {"LogVerbosity": "Quiet"}
         if time_limit is not None:
             options["TimeLimit"] = time_limit
@@ -224,15 +230,22 @@ class CPLEXSolver(Solver):
         raise TypeError("CPLEXSolver requires a DOcplex MP or CP model")
 
     def solve(self, model: Any, time_limit: float | None = None) -> SolveResult:
-        return self._select_backend(model).solve(model, time_limit)
+        backend = self._select_backend(model)
+        return backend.solve(model, time_limit)
 
     def model_size(self, model: Any) -> tuple[int, int]:
-        return self._select_backend(model).model_size(model)
+        backend = self._select_backend(model)
+        return backend.model_size(model)
 
     def close(self, model: Any) -> None:
-        self._select_backend(model).close(model)
+        backend = self._select_backend(model)
+        backend.close(model)
 
-
-def run_solver(cnf: CNF, solver_name: str = "g3", time_limit: float | None = None) -> tuple[bool | None, list[int] | None]:
+def run_solver(
+    cnf: CNF,
+    solver_name: str = "g3",
+    time_limit: float | None = None,
+) -> tuple[bool | None, list[int] | None]:
+    # Keep the older helper while using the shared SAT solver class.
     result = SATSolver(solver_name=solver_name).solve(cnf, time_limit)
     return result.satisfiable, result.solution

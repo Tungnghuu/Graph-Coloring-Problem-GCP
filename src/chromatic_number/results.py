@@ -17,18 +17,14 @@ class ResultsWriter:
     ]
 
     def __init__(self, col_file_path):
-        # Honor explicit CSV paths; graph paths keep the existing convention.
+        # Use the requested path when it already points to a CSV file
         path = Path(col_file_path)
-        self.file_path = (
-            path if path.suffix.lower() == ".csv"
-            else Path("results") / f"{path.stem}.csv"
-        )
+        if path.suffix.lower() == ".csv":
+            self.file_path = path
+        else:
+            self.file_path = Path("results") / f"{path.stem}.csv"
 
-        # Create the results folder if needed
-        self.file_path.parent.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
+        self.file_path.parent.mkdir(parents=True, exist_ok=True)
 
         with open(self.file_path, "w", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=self.FIELDNAMES)

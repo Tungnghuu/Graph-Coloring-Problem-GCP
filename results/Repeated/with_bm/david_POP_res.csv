@@ -1,2 +1,0 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-RepeatedSolver,POPEncoding,11,SAT,957,9393,True,0.0017348999972455204,0.024363799995626323,0.015043899999000132,0.041142599991871975

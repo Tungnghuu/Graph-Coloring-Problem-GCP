@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,POHPEncoding,31,SAT,39990,531600,True,0.1159570999443531,4.10153900005389,0.5485563999973238,4.766052499995567

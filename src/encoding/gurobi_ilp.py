@@ -7,7 +7,7 @@ class GurobiILPEncoding(ILPEncoding):
         self.symmetry_breaking = symmetry_breaking
         self.model: Any | None = None
 
-    def encode(self, graph, k: int) -> Any:
+    def encode(self, graph, k: int, *, time_limit=None) -> Any:
         try:
             import gurobipy as gp
         except ImportError as error:
@@ -15,17 +15,19 @@ class GurobiILPEncoding(ILPEncoding):
                 "GurobiILPEncoding requires the gurobipy package"
             ) from error
 
-        n, edges = self._prepare(graph, k)
+        deadline = self._encoding_deadline(time_limit)
+        n, edges = self._prepare(graph, k, deadline=deadline)
         self._gp = gp
         self.model = gp.Model("graph_coloring")
         self.model.Params.OutputFlag = 0
-        self.x_vars = {
-            (vertex, color): self.model.addVar(
-                vtype=gp.GRB.BINARY, name=f"x_{vertex}_{color}"
-            )
-            for vertex in range(n)
-            for color in range(k)
-        }
+        # Create one binary variable for every vertex/color pair.
+        for vertex in range(n):
+            self._check_deadline(deadline)
+            for color in range(k):
+                self._check_deadline(deadline)
+                self.x_vars[vertex, color] = self.model.addVar(
+                    vtype=gp.GRB.BINARY, name=f"x_{vertex}_{color}"
+                )
 
         if k == 0 and n:
             impossible = self.model.addVar(
@@ -35,16 +37,20 @@ class GurobiILPEncoding(ILPEncoding):
 
         if k:
             for vertex in range(n):
+                self._check_deadline(deadline)
+                variables = []
+                for color in range(k):
+                    self._check_deadline(deadline)
+                    variables.append(self.x_vars[vertex, color])
                 self.model.addConstr(
-                    gp.quicksum(
-                        self.x_vars[vertex, color] for color in range(k)
-                    )
-                    == 1,
+                    gp.quicksum(variables) == 1,
                     name=f"assign_{vertex}",
                 )
 
         for u, v in edges:
+            self._check_deadline(deadline)
             for color in range(k):
+                self._check_deadline(deadline)
                 self.model.addConstr(
                     self.x_vars[u, color] + self.x_vars[v, color] <= 1,
                     name=f"edge_{u}_{v}_color_{color}",
@@ -52,12 +58,15 @@ class GurobiILPEncoding(ILPEncoding):
 
         if self.symmetry_breaking:
             for vertex in range(min(n, k)):
+                self._check_deadline(deadline)
                 for color in range(vertex + 1, k):
+                    self._check_deadline(deadline)
                     self.model.addConstr(
                         self.x_vars[vertex, color] == 0,
                         name=f"symmetry_{vertex}_{color}",
                     )
 
+        self._check_deadline(deadline)
         self.model.update()
         return self.model
 
@@ -65,17 +74,23 @@ class GurobiILPEncoding(ILPEncoding):
         self._validate_color(color)
         if self.model is None:
             raise RuntimeError("encode() must be called before forbid_color()")
-        return [
-            self.model.addConstr(
+
+        constraints = []
+        for vertex in range(self._n):
+            constraint = self.model.addConstr(
                 self.x_vars[vertex, color] == 0,
                 name=f"forbid_color_{vertex}_{color}",
             )
-            for vertex in range(self._n)
-        ]
+            constraints.append(constraint)
+        return constraints
 
     def decode_model(self, solution=None) -> list[int]:
         self._require_encoded()
-        model = self.model if solution is None else solution
+        if solution is None:
+            model = self.model
+        else:
+            model = solution
+
         if model is None or model is not self.model:
             raise ValueError("solution must be the encoded Gurobi model")
         if model.SolCount == 0:
@@ -83,11 +98,11 @@ class GurobiILPEncoding(ILPEncoding):
 
         colors = []
         for vertex in range(self._n):
-            assigned = [
-                color
-                for color in range(self._k)
-                if self.x_vars[vertex, color].X > 0.5
-            ]
+            assigned = []
+            for color in range(self._k):
+                variable = self.x_vars[vertex, color]
+                if variable.X > 0.5:
+                    assigned.append(color)
             if len(assigned) != 1:
                 raise ValueError(
                     f"solution must assign exactly one color to vertex {vertex}"

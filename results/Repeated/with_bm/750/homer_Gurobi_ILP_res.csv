@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,GurobiILPEncoding,13,UNSAT,7293,21816,False,0.08398460003081709,0.41532699996605515,0.014197499956935644,0.5135090999538079
