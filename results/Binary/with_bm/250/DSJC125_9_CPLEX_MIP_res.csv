@@ -1,0 +1,3 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+BinarySearchSAT,CPLEXMIPEncoding,42,TIMEOUT,5250,293348,False,0.027208399958908558,11.492344500031322,18.73685210000258,30.25640499999281
+BinarySearchSAT,CPLEXMIPEncoding,48,TIMEOUT,0,0,False,0,7.5999414548277855e-06,0,7.5999414548277855e-06
