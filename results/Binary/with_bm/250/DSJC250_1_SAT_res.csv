@@ -1,0 +1,3 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+BinarySearchSAT,SATEncoding,7,TIMEOUT,1750,28047,False,0.0116308000870049,0.03869930002838373,30.001537599950098,30.051867700065486
+BinarySearchSAT,SATEncoding,9,TIMEOUT,0,0,False,0,7.900060154497623e-06,0,7.900060154497623e-06
