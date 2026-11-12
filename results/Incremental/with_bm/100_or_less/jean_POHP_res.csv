@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+IncrementalSAT,POHPEncoding,10,SAT,1600,6345,True,0.0024842999409884214,0.049895600066520274,0.011028399923816323,0.06340829993132502

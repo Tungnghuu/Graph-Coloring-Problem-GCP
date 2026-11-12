@@ -10,7 +10,7 @@ class CPLEXCPEncoding(SolverEncoding):
         self._isolated_vertices: set[int] = set()
         self._forbidden_colors: set[int] = set()
 
-    def encode(self, graph, k: int) -> Any:
+    def encode(self, graph, k: int, *, time_limit=None) -> Any:
         try:
             import docplex.cp.model as cp
         except ImportError as error:
@@ -18,27 +18,45 @@ class CPLEXCPEncoding(SolverEncoding):
                 "CPLEXCPEncoding requires the docplex package"
             ) from error
 
-        n, edges = self._prepare(graph, k)
+        deadline = self._encoding_deadline(time_limit)
+        n, edges = self._prepare(graph, k, deadline=deadline)
         self.model = cp.CpoModel(name="graph_coloring")
-        incident_vertices = {vertex for edge in edges for vertex in edge}
-        self._isolated_vertices = set(range(n)) - incident_vertices
+
+        incident_vertices = set()
+        for edge in edges:
+            self._check_deadline(deadline)
+            incident_vertices.update(edge)
+
+        self._isolated_vertices = set()
+        for vertex in range(n):
+            self._check_deadline(deadline)
+            if vertex not in incident_vertices:
+                self._isolated_vertices.add(vertex)
+
         self._forbidden_colors = set()
-        self.color_vars = {
-            vertex: cp.integer_var(min=0, max=k - 1, name=f"color_{vertex}")
-            for vertex in range(n)
-            if k > 0
-        }
+        self.color_vars = {}
+
+        for vertex in range(n):
+            self._check_deadline(deadline)
+            if k > 0:
+                self.color_vars[vertex] = cp.integer_var(
+                    min=0, max=k - 1, name=f"color_{vertex}"
+                )
 
         if k == 0 and n:
+            self._check_deadline(deadline)
             self.model.add(cp.equal(0, 1))
 
         for u, v in edges:
+            self._check_deadline(deadline)
             self.model.add(self.color_vars[u] != self.color_vars[v])
 
         if self.symmetry_breaking and n and k:
+            self._check_deadline(deadline)
             self.model.add(self.color_vars[0] == 0)
             self._isolated_vertices.discard(0)
 
+        self._check_deadline(deadline)
         return self.model
 
     def forbid_color(self, color: int) -> list[Any]:
@@ -46,10 +64,10 @@ class CPLEXCPEncoding(SolverEncoding):
         if self.model is None:
             raise RuntimeError("encode() must be called before forbid_color()")
 
-        constraints = [
-            self.color_vars[vertex] != color
-            for vertex in range(self._n)
-        ]
+        constraints = []
+        for vertex in range(self._n):
+            constraint = self.color_vars[vertex] != color
+            constraints.append(constraint)
         self.model.add(constraints)
         self._forbidden_colors.add(color)
         return constraints
@@ -70,14 +88,11 @@ class CPLEXCPEncoding(SolverEncoding):
             except KeyError:
                 if vertex not in self._isolated_vertices:
                     raise
-                color = next(
-                    (
-                        candidate
-                        for candidate in range(self._k)
-                        if candidate not in self._forbidden_colors
-                    ),
-                    None,
-                )
+                color = None
+                for candidate in range(self._k):
+                    if candidate not in self._forbidden_colors:
+                        color = candidate
+                        break
                 if color is None:
                     raise ValueError(
                         f"solution omits isolated vertex {vertex}, "

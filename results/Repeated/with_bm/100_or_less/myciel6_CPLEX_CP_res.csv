@@ -1,0 +1,3 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,CPLEXCPEncoding,7,SAT,95,756,True,0.003306299913674593,0.00651310000102967,0.03922389994841069,0.04904329986311495
+RepeatedSolver,CPLEXCPEncoding,6,TIMEOUT,95,756,True,0,0.004781200084835291,30.025916899903677,30.030698099988513

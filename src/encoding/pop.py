@@ -9,15 +9,17 @@ class POPEncoding(CNFEncoding):
         self._n = None
         self._k = 0
 
-    def encode(self, graph, k: int) -> CNF:
-        n, edges = validate_encoding_input(graph, k)
+    def encode(self, graph, k: int, *, time_limit=None) -> CNF:
+        deadline = self._encoding_deadline(time_limit)
+        n, edges = validate_encoding_input(graph, k, deadline=deadline)
 
         self._n, self._k = n, k
-        self.x_vars = {
-            (v, color): v * k + color + 1
-            for v in range(n)
-            for color in range(k)
-        }
+        self.x_vars = {}
+        for v in range(n):
+            self._check_deadline(deadline)
+            for color in range(k):
+                self._check_deadline(deadline)
+                self.x_vars[v, color] = v * k + color + 1
 
         x = self.x_vars
         cnf = CNF()
@@ -29,22 +31,35 @@ class POPEncoding(CNFEncoding):
 
         # ALO: each vertex must have ALO color
         for v in range(n):
-            cnf.append([x[v, color] for color in range(k)])
-
-        # AMO: each vertex must have AMO color
-        for v in range(n):
+            self._check_deadline(deadline)
+            variables = []
             for color in range(k):
+                self._check_deadline(deadline)
+                variables.append(x[v, color])
+            cnf.append(variables)
+
+        # Add clauses preventing a vertex from getting two colors
+        for v in range(n):
+            self._check_deadline(deadline)
+            for color in range(k):
+                self._check_deadline(deadline)
                 for other_color in range(color + 1, k):
+                    self._check_deadline(deadline)
                     cnf.append([-x[v, color], -x[v, other_color]])
 
-        # Adjacent vertices cannot share a color
+        # Add clauses preventing connected vertices from sharing a color
         for u, v in edges:
+            self._check_deadline(deadline)
             for color in range(k):
+                self._check_deadline(deadline)
                 cnf.append([-x[u, color], -x[v, color]])
 
-        # A canonical relabeling gives vertex v a color no greater than v.
+        # Remove equivalent solutions with different color labels
         if self.symmetry_breaking:
             for v in range(min(n, k)):
+                self._check_deadline(deadline)
                 for color in range(v + 1, k):
+                    self._check_deadline(deadline)
                     cnf.append([-x[v, color]])
+        self._check_deadline(deadline)
         return cnf

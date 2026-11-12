@@ -4,3 +4,12 @@ from .pohp import POHPEncoding
 from .gurobi_ilp import GurobiILPEncoding
 from .cplex_mip import CPLEXMIPEncoding
 from .cplex_cp import CPLEXCPEncoding
+
+__all__ = [
+    "SATEncoding",
+    "POPEncoding",
+    "POHPEncoding",
+    "GurobiILPEncoding",
+    "CPLEXMIPEncoding",
+    "CPLEXCPEncoding",
+]
