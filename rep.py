@@ -1,4 +1,5 @@
 from src.benchmark.experiment_runner import PROJECT_DIR, run_experiment
+from src.encoding import POHPEncoding, POPEncoding, SATEncoding
 
 SIZE_FOLDERS = ["750", "1000"]
 RESULTS_DIR = PROJECT_DIR / "results" / "Repeated" / "with_bm"
@@ -19,6 +20,11 @@ def main():
             time_limit=TIME_LIMIT,
             encoding_time_limit=ENCODING_TIME_LIMIT,
             total_time_limit=TOTAL_TIME_LIMIT,
+            encoding_specs=(
+                ("SAT", SATEncoding, None),
+                ("POP", POPEncoding, None),
+                ("POHP", POHPEncoding, None),
+            ),
         )
 
 if __name__ == "__main__":
