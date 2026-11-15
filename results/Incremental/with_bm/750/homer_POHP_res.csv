@@ -1,2 +1,2 @@
 method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-IncrementalSAT,POHPEncoding,13,UNSAT,14586,56455,False,0.03675870003644377,0.990246000001207,0.05445620010141283,1.0814609001390636
+IncrementalSAT,POHPEncoding,13,SAT,14586,56442,True,0.037368099990999326,1.1071292999986326,0.087344799991115,1.231842199980747
