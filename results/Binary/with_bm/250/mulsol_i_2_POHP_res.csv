@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+BinarySearchSAT,POHPEncoding,31,SAT,11656,148765,True,0.013232199940830469,0.45301800000015646,0.10551879997365177,0.5717689999146387

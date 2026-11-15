@@ -1,0 +1,2 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+BinarySearchSAT,GurobiILPEncoding,25,SAT,11250,207325,True,0.05472020000024713,2.281137199999648,2.055211800000052,4.391069199999947

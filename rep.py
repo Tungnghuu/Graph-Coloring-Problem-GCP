@@ -1,6 +1,6 @@
 from src.benchmark.experiment_runner import PROJECT_DIR, run_experiment
 
-SIZE_FOLDERS = ["750", "1000"]
+SIZE_FOLDERS = ["dense"]
 RESULTS_DIR = PROJECT_DIR / "results" / "Repeated" / "with_bm"
 
 TIME_LIMIT = 30
