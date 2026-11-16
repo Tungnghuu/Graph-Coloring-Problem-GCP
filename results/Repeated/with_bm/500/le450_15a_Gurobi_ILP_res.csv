@@ -1,0 +1,4 @@
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
+RepeatedSolver,GurobiILPEncoding,18,SAT,8100,147627,True,0.03948439999658149,1.3530644999991637,0.4075527000022703,1.8001015999980154
+RepeatedSolver,GurobiILPEncoding,17,SAT,7650,139442,True,0,1.2295569000052637,0.21147019999625627,1.44102710000152
+RepeatedSolver,GurobiILPEncoding,16,TIMEOUT,7200,131258,True,0,1.1291385000004084,30.031664900001488,31.160803400001896
