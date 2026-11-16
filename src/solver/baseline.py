@@ -4,6 +4,7 @@ from math import isfinite
 from numbers import Real
 from threading import Timer
 from typing import Any
+from time import perf_counter
 
 from pysat.formula import CNF
 from pysat.solvers import Solver as PySATSolver
@@ -12,6 +13,10 @@ from pysat.solvers import Solver as PySATSolver
 class SolveResult:
     satisfiable: bool | None
     solution: Any = None
+    timed_out: bool = False
+    backend_status: str = ""
+    setup_time: float | None = None
+    solving_time: float | None = None
 
     @property
     def status(self) -> str:
@@ -19,7 +24,7 @@ class SolveResult:
             return "SAT"
         if self.satisfiable is False:
             return "UNSAT"
-        return "TIMEOUT"
+        return "TIMEOUT" if self.timed_out else "UNKNOWN"
 
 class Solver(ABC):
     @abstractmethod
@@ -60,9 +65,12 @@ class SATSolver(Solver):
             raise TypeError("SATSolver requires a PySAT CNF model")
         self.validate_time_limit(time_limit)
 
+        setup_start = perf_counter()
         with PySATSolver(
             name=self.solver_name, bootstrap_with=model.clauses
         ) as solver:
+            setup_time = perf_counter() - setup_start
+            solve_start = perf_counter()
             if time_limit is None:
                 satisfiable = solver.solve()
             else:
@@ -77,11 +85,14 @@ class SATSolver(Solver):
                     timer.join()
                     solver.clear_interrupt()
 
+            solving_time = perf_counter() - solve_start
             solution = None
             if satisfiable is True:
                 solution = solver.get_model()
 
-        return SolveResult(satisfiable=satisfiable, solution=solution)
+        return SolveResult(satisfiable=satisfiable, solution=solution, timed_out=satisfiable is None,
+                           backend_status="interrupted" if satisfiable is None else "finished",
+                           setup_time=setup_time, solving_time=solving_time)
 
     def model_size(self, model: CNF) -> tuple[int, int]:
         if not isinstance(model, CNF):
@@ -101,12 +112,13 @@ class GurobiSolver(Solver):
         if time_limit is not None:
             model.Params.TimeLimit = time_limit
 
+        model.Params.Threads = 1
         model.optimize()
         if model.SolCount > 0:
-            return SolveResult(satisfiable=True, solution=model)
+            return SolveResult(satisfiable=True, solution=model, timed_out=model.Status == gp.GRB.TIME_LIMIT, backend_status=str(model.Status))
         if model.Status == gp.GRB.INFEASIBLE:
             return SolveResult(satisfiable=False)
-        return SolveResult(satisfiable=None)
+        return SolveResult(satisfiable=None, timed_out=model.Status == gp.GRB.TIME_LIMIT, backend_status=str(model.Status))
 
     def model_size(self, model: Any) -> tuple[int, int]:
         try:
@@ -142,14 +154,15 @@ class CPLEXMIPSolver(Solver):
         if time_limit is not None:
             model.parameters.timelimit = time_limit
 
+        model.parameters.threads = 1
         solution = model.solve(log_output=False)
-        if solution is not None:
-            return SolveResult(satisfiable=True, solution=solution)
-
         status = model.solve_details.status.lower()
-        if "infeasible" in status:
+        timed_out = "time limit" in status
+        if solution is not None:
+            return SolveResult(satisfiable=True, solution=solution, timed_out=timed_out, backend_status=status)
+        if status in ("infeasible", "integer infeasible"):
             return SolveResult(satisfiable=False)
-        return SolveResult(satisfiable=None)
+        return SolveResult(satisfiable=None, timed_out=timed_out, backend_status=status)
 
     def model_size(self, model: Any) -> tuple[int, int]:
         try:
@@ -186,18 +199,19 @@ class CPLEXCPSolver(Solver):
         if not isinstance(model, CpoModel):
             raise TypeError("CPLEXCPSolver requires a DOcplex CP model")
 
-        options = {"LogVerbosity": "Quiet"}
+        options = {"LogVerbosity": "Quiet", "Workers": 1}
         if time_limit is not None:
             options["TimeLimit"] = time_limit
 
         solution = model.solve(**options)
-        if solution.is_solution():
-            return SolveResult(satisfiable=True, solution=solution)
-
         status = solution.get_solve_status().lower()
-        if "infeasible" in status:
+        stop = str(solution.get_stop_cause())
+        timed_out = "time" in stop.lower() or (stop == "SearchStoppedByLimit" and time_limit is not None)
+        if solution.is_solution():
+            return SolveResult(satisfiable=True, solution=solution, timed_out=timed_out, backend_status=status+":"+stop)
+        if status in ("infeasible", "integer infeasible"):
             return SolveResult(satisfiable=False)
-        return SolveResult(satisfiable=None)
+        return SolveResult(satisfiable=None, timed_out=timed_out, backend_status=status+":"+stop)
 
     def model_size(self, model: Any) -> tuple[int, int]:
         try:

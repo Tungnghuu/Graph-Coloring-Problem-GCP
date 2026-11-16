@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+\centering
+\caption{EXPLORATORY; Binary; SAT=POHP; pairwise intersections are independent of other backends.}
+\label{tab:p2b-Binary-exploratory-pairs}
+\begin{tabular}{llllll}
+\hline
+A & B & Common cases & Both optimal timed & A median & B median \\
+\hline
+POHP & Gurobi\_ILP & 78 & 6 & 0.134 & 0.961 \\
+POHP & CPLEX\_MIP & 78 & 6 & 0.134 & 1.06 \\
+POHP & CPLEX\_CP & 78 & 5 & 0.0206 & 0.143 \\
+Gurobi\_ILP & CPLEX\_MIP & 78 & 9 & 4.61 & 2.33 \\
+Gurobi\_ILP & CPLEX\_CP & 78 & 9 & 4.61 & 0.154 \\
+CPLEX\_MIP & CPLEX\_CP & 78 & 8 & 2.11 & 0.149 \\
+\hline
+\end{tabular}
+\end{table}
