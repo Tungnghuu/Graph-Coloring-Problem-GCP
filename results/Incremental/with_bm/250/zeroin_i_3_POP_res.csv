@@ -1,2 +1,2 @@
 method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-IncrementalSAT,POPEncoding,30,SAT,6180,196451,True,0.017965400009416044,0.3049812000244856,0.11064239987172186,0.4335889999056235
+IncrementalSAT,POPEncoding,30,SAT,6180,196451,True,0.008939300001657102,0.21094879999873228,0.07899950000137324,0.2988876000017626
