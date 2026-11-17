@@ -11,6 +11,7 @@ TIME_LIMIT = 30
 
 SELECTED_GRAPHS = {
     "750": "homer.col",
+    "1000": "inithx_i_1.col",
 }
 
 def main():
