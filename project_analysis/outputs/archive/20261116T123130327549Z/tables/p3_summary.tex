@@ -1,0 +1,22 @@
+\begin{table}[htbp]
+\centering
+\caption{Per-k observed runtime, not total Repeated search time. Timeout values are censored.}
+\label{tab:p3-summary}
+\begin{tabular}{llllllll}
+\hline
+Graph & Status & Attempts & Min k & Max k & Median runtime & Peak k & Peak runtime \\
+\hline
+100\_or\_less/david.col & SAT & 77 & 11 & 87 & 0.125 & 86 & 0.335 \\
+100\_or\_less/david.col & UNSAT & 10 & 1 & 10 & 0.0178 & 10 & 0.115 \\
+250/anna.col & SAT & 128 & 11 & 138 & 0.323 & 136 & 1.37 \\
+250/anna.col & UNSAT & 10 & 1 & 10 & 0.0342 & 10 & 0.24 \\
+500/DSJC500\_1.col & SAT & 486 & 15 & 500 & 17.2 & 496 & 33.2 \\
+500/DSJC500\_1.col & UNSAT & 5 & 1 & 5 & 0.153 & 5 & 0.372 \\
+500/DSJC500\_1.col & TIMEOUT & 9 & 6 & 14 & 30.8 & 14 & 31.1 \\
+750/homer.col & SAT & 9 & 553 & 561 & 26.6 & 558 & 31.1 \\
+dense/flat300\_20\_0.col & SAT & 261 & 40 & 300 & 10 & 300 & 18.7 \\
+dense/flat300\_20\_0.col & UNSAT & 11 & 1 & 11 & 0.325 & 11 & 5.35 \\
+dense/flat300\_20\_0.col & TIMEOUT & 28 & 12 & 39 & 31.6 & 30 & 34.2 \\
+\hline
+\end{tabular}
+\end{table}

@@ -79,7 +79,7 @@ class ChromaticNumberSolver(ABC):
 
     @staticmethod
     def _record_encoding_timeout(
-        results, method, encoding, k, bounds_time, encoding_time
+        results, method, encoding, k, bounds_time, encoding_time, phase="encoding"
     ):
         if results is not None:
             results.save({
@@ -87,6 +87,9 @@ class ChromaticNumberSolver(ABC):
                 "encoding": encoding.__class__.__name__,
                 "k": k,
                 "status": "TIMEOUT",
+                "solver_called": False,
+                "timed_out": True,
+                "timeout_phase": phase,
                 "num_variables": 0,
                 "num_clauses": 0,
                 "valid_coloring": False,
