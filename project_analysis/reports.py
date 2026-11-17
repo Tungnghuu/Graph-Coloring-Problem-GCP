@@ -1,4 +1,3 @@
-"""Stratified reports with auditable membership and explicit evidence requirements."""
 from collections import defaultdict
 from itertools import combinations
 from pathlib import Path
@@ -15,11 +14,11 @@ else:
 FIG=ROOT/'outputs'/'figures'
 TABLES=ROOT/'outputs'/'tables'
 SAT=('SAT','POP','POHP')
-BACKENDS=('POHP','Gurobi_ILP','CPLEX_MIP','CPLEX_CP')
-
+P2B_ENCODINGS=SAT
+P2B_METHODS=('Incremental','Repeated','Binary')
+BACKENDS=(*SAT,'Gurobi_ILP','CPLEX_MIP','CPLEX_CP')
 
 FIGURE_STATUS = []
-
 
 def has_plotted_data(fig):
     """Empty scatter/line artists still set Axes.has_data(), so inspect their data."""
@@ -31,24 +30,23 @@ def has_plotted_data(fig):
         for ax in fig.axes
     )
 
-
 def figure_presentation(name):
     """Keep machine comparison IDs separate from reader-facing titles and files."""
     clean = name.replace('_exploratory', '')
     metrics = {
-        'encoding_time': ('thoi_gian_ma_hoa', 'So sánh thời gian mã hóa'),
-        'solving_time': ('thoi_gian_giai', 'So sánh thời gian giải'),
-        'total_time': ('tong_thoi_gian', 'So sánh tổng thời gian chạy'),
-        'timeout': ('ty_le_timeout', 'Tỷ lệ hết thời gian'),
-        'num_variables': ('so_bien', 'Số biến của công thức'),
-        'num_clauses': ('so_menh_de', 'Số mệnh đề của công thức'),
-        'paired_time': ('thoi_gian_tung_do_thi', 'Thời gian chạy trên từng đồ thị'),
-        'best_colors': ('so_mau_tot_nhat', 'Số màu tốt nhất trên từng đồ thị'),
-        'attempts_time': ('so_lan_thu_va_thoi_gian', 'Số lần thử và thời gian chạy'),
-        'solver_calls_time': ('so_lan_goi_solver_va_thoi_gian', 'Số lần gọi solver và thời gian chạy'),
-        'outcomes': ('chat_luong_nghiem', 'Tỷ lệ nghiệm khả thi và tối ưu'),
-        'profile': ('hieu_nang_tuong_doi', 'Hiệu năng tương đối của các bộ giải'),
-        'gap': ('khoang_cach_toi_uu', 'Khoảng cách tới cận tối ưu'),
+        'encoding_time': ('thoi_gian_ma_hoa', 'Encoding time comparison'),
+        'solving_time': ('thoi_gian_giai', 'Solving time comparison'),
+        'total_time': ('tong_thoi_gian', 'Total runtime comparison'),
+        'timeout': ('ty_le_timeout', 'Timeout rate'),
+        'num_variables': ('so_bien', 'Formula variable count'),
+        'num_clauses': ('so_menh_de', 'Formula clause count'),
+        'paired_time': ('thoi_gian_tung_do_thi', 'Runtime by graph'),
+        'best_colors': ('so_mau_tot_nhat', 'Best color count by graph'),
+        'attempts_time': ('so_lan_thu_va_thoi_gian', 'Attempts versus runtime'),
+        'solver_calls_time': ('so_lan_goi_solver_va_thoi_gian', 'Solver calls versus runtime'),
+        'outcomes': ('chat_luong_nghiem', 'Solution outcome breakdown'),
+        'profile': ('hieu_nang_tuong_doi', 'Relative performance profile'),
+        'gap': ('khoang_cach_toi_uu', 'Optimality gap'),
     }
     if clean.startswith(('p1_', 'p2a_', 'p2b_')):
         part, config, metric = clean.split('_', 2)
@@ -57,41 +55,48 @@ def figure_presentation(name):
         filename = f'{part}_{slug}_{config.lower()}'
         if '_exploratory' not in name:
             filename += '_da_xac_minh'
-        notes = ['Dữ liệu lịch sử; cấu hình chưa được xác minh.' if '_exploratory' in name
-                 else 'Các lần chạy có cấu hình đã xác minh.']
-        if metric in ('encoding_time', 'solving_time', 'total_time', 'paired_time'):
-            notes.append('Chỉ so sánh các ca chung đã chứng minh tối ưu; n là số mẫu.')
+        notes = ['Historical data; configuration is unverified.' if '_exploratory' in name
+                 else 'Runs use verified configurations.']
+        if part in ('p1','p2a','p2b') and metric in ('encoding_time','solving_time','total_time','paired_time'):
+            notes.append('Includes proven-optimal and best-observed runs; k may differ across encodings or methods.')
+        elif metric in ('encoding_time', 'solving_time', 'total_time', 'paired_time'):
+            notes.append('Compares common proven-optimal runs only; n is the sample count.')
         if metric in ('paired_time', 'best_colors'):
-            notes.append('Tối đa 12 đồ thị theo thứ tự ID; ○: tối ưu, ×: chưa chứng minh tối ưu.')
+            notes.append('Shows at most 12 graph IDs; circle = proven optimal, x = not proven optimal.')
         if metric in ('num_variables', 'num_clauses'):
-            notes.append('Lần thử đầu, ghép cùng đồ thị và k; trung vị tại mỗi số đỉnh.')
+            notes.append('First attempt, matched by graph and k; median at each vertex count.')
         if metric in ('attempts_time', 'solver_calls_time'):
-            notes.append('×: hết thời gian; thời gian quan sát không phải thời gian tìm được lời giải.')
+            notes.append('x = timeout; observed runtime is not time-to-solution for timed-out runs.')
+        if metric == 'attempts_time':
+            notes.append('Runtime uses a symlog scale to retain very long runs.')
+        if part == 'p2b' and metric == 'outcomes':
+            notes.append('Best observed = lowest valid best_k for the same graph and method; it does not prove optimality.')
         if metric == 'profile':
-            notes.append('Thành công = chứng minh tối ưu; mẫu số gồm mọi ca chung, kể cả thất bại.')
+            if part == 'p2b':
+                notes.append('Includes proven-optimal and best-observed runs; k may differ across encodings.')
+            else:
+                notes.append('Success means proven optimal; the denominator includes all matched cases, including failures.')
         if metric == 'gap':
-            notes.append('Các nghiệm khả thi chưa chứng minh tối ưu; gap = (UB − LB) / UB.')
+            notes.append('Feasible solutions may not be optimal; gap = (UB - LB) / UB.')
         return filename, f'{title} — {label}', ' '.join(notes)
     if clean.startswith('p3_'):
         graph = clean[3:]
         return ('p3_thoi_gian_theo_so_mau_k' + ('' if graph == 'runtime_k' else '_'+graph),
-                'Thời gian chạy theo số màu k' + ('' if graph == 'runtime_k' else ' — '+graph),
-                'Mỗi k là một lần giải độc lập. Một đồ thị mỗi nhóm; cấu hình lịch sử có thể chưa xác minh.')
+                'Runtime by color count k' + ('' if graph == 'runtime_k' else ' — '+graph),
+                'Each k is an independent solve. One graph per group; historical configuration may be unverified.')
     return name, None, ''
 
-
 AXIS_LABELS = {
-    'encoding_time': 'Thời gian mã hóa (giây)', 'solving_time': 'Thời gian giải (giây)',
-    'total_time': 'Tổng thời gian chạy (giây)', 'best_k': 'Số màu tốt nhất',
-    'num_variables': 'Số biến', 'num_clauses': 'Số mệnh đề', 'Vertices': 'Số đỉnh',
-    'gap': 'Khoảng cách tương đối (UB − LB) / UB', 'attempts': 'Số lần thử k',
-    'solver_calls': 'Số lần gọi solver', 'Observed timeout (%)': 'Hết thời gian (%)',
-    'Observed runtime (s), not time to solution for timeout': 'Thời gian quan sát (giây)',
-    'Runs (%)': 'Tỷ lệ lần chạy (%)', 'Runtime / fastest proven runtime': 'Thời gian / thời gian nhanh nhất',
-    'Fraction of all matched cases': 'Tỷ lệ trên tập đồ thị chung', 'k': 'Số màu k',
-    'Runtime per k (s)': 'Thời gian tại mỗi k (giây)',
+    'encoding_time': 'Encoding time (s)', 'solving_time': 'Solving time (s)',
+    'total_time': 'Total runtime (s)', 'best_k': 'Best color count',
+    'num_variables': 'Variables', 'num_clauses': 'Clauses', 'Vertices': 'Vertices',
+    'gap': 'Relative gap (UB - LB) / UB', 'attempts': 'Number of k attempts',
+    'solver_calls': 'Solver calls', 'Observed timeout (%)': 'Timeout rate (%)',
+    'Observed runtime (s), not time to solution for timeout': 'Observed runtime (s)',
+    'Runs (%)': 'Runs (%)', 'Runtime / fastest proven runtime': 'Runtime / fastest runtime',
+    'Fraction of all matched cases': 'Fraction of all matched cases', 'k': 'Color count k',
+    'Runtime per k (s)': 'Runtime per k (s)',
 }
-
 
 def save(name):
     fig = plt.gcf()
@@ -101,6 +106,7 @@ def save(name):
     original_name = name
     original_title = ' / '.join(ax.get_title() for ax in fig.axes if ax.get_title())
     name, title, caption = figure_presentation(name)
+    name = name.replace('/', '_').replace('\\', '_')
     title = title or original_title
     if fig.axes:
         fig.axes[0].set_title(title)
@@ -111,7 +117,12 @@ def save(name):
         if legend:
             for text in legend.get_texts():
                 value = text.get_text()
-                text.set_text({'optimal':'Tối ưu', 'feasible':'Khả thi, chưa tối ưu', 'unknown':'Chưa có kết luận'}.get(value,value.replace(' timeout',' (hết thời gian)')))
+                text.set_text({
+                    'optimal':'Proven optimal',
+                    'best_observed':'Best observed (not proven optimal)',
+                    'feasible':'Feasible, not best observed',
+                    'unknown':'Unknown',
+                }.get(value,value.replace(' timeout',' (timeout)')))
     FIGURE_STATUS.append(dict(figure=name, comparison_id=original_name, status='skipped' if reason else 'created',
                               title=title, caption=caption, comparison_notes=original_title, reason=reason))
     if not reason:
@@ -120,16 +131,13 @@ def save(name):
         if caption:
             fig.text(.5, .015, textwrap.fill(caption, width=110), ha="center", va="bottom", fontsize=8)
         fig.tight_layout(rect=(0, .12 if caption else 0, 1, 1))
-        for ext in ('png', 'pdf'):
-            fig.savefig(FIG/(name+'.'+ext), dpi=160)
+        fig.savefig(FIG/(name+'.png'), dpi=160)
     plt.close(fig)
-
 
 def no_data(title):
     fig = plt.figure()
     fig._skip_reason = 'Insufficient matched evidence; see coverage and membership tables.'
     plt.title(title)
-
 
 def write_figure_status():
     write_csv(FIG.parent/'figure_status.csv', FIGURE_STATUS,
@@ -140,7 +148,6 @@ def write_figure_status():
         f.write('No placeholder images are exported. See figure_status.csv for every figure.\n')
         for row in skipped:
             f.write(f'- {row["figure"]}: {row["reason"]}\n')
-
 
 def emit(name,headers,rows,caption): table(name,headers,rows,caption,output=TABLES)
 
@@ -160,7 +167,7 @@ def boxes(rows,category,value,title,name):
         plt.figure(figsize=(max(8,len(labels)*.8),5)); plt.boxplot(data,showfliers=True)
         if all(v>0 for vs in data for v in vs): plt.yscale('log')
         else: plt.yscale('symlog',linthresh=.001)
-        plt.xticks(range(1,len(labels)+1),labels,rotation=40,ha='right'); plt.ylabel(value); plt.xlabel('Nhóm đồ thị / Phương pháp'); plt.title(title)
+        plt.xticks(range(1,len(labels)+1),labels,rotation=40,ha='right'); plt.ylabel(value); plt.xlabel('Graph group / Method'); plt.title(title)
     save(name)
 
 def heat(rows,col,title,name):
@@ -194,7 +201,7 @@ def stratum(r,part):
     keys.append(r['encoding'] if part=='p2a' else r['method'])
     return tuple(keys)
 
-def select(runs,key,cats,part,name,predicate=lambda r:True,metric=None,exploratory=False,extra=None):
+def select(runs,key,cats,part,name,predicate=lambda r:True,metric=None,exploratory=False,extra=None,require_common=True):
     eligible=[]; reasons={}; clean={r['source'] for r in clean_runs(runs)}
     for r in runs:
         reason=''
@@ -205,7 +212,7 @@ def select(runs,key,cats,part,name,predicate=lambda r:True,metric=None,explorato
         if reason: reasons[r['source']]=reason
         else: eligible.append(r)
     grouping=lambda r:(stratum(r,part),r.get(extra)) if extra else stratum(r,part)
-    selected=common(eligible,key,cats,grouping)
+    selected=common(eligible,key,cats,grouping) if require_common else eligible
     included={r['source'] for r in selected}
     emit(name+'_membership',['Source','Graph','Included','Reason'],[[r['source'],r['graph_id'],r['source'] in included,'' if r['source'] in included else reasons.get(r['source'],'unmatched or repeated stratum')] for r in runs],
          'Membership for '+name+'; unknown historical configurations are exploratory only.')
@@ -247,10 +254,11 @@ def overview(runs,issues):
 def part1(runs,method='Repeated',exploratory=False):
     tag='p1_'+method+('_exploratory' if exploratory else '')
     rows=select(runs,'encoding',SAT,'p1',tag,lambda r:r['method']==method,exploratory=exploratory)
+    best_sources=best_observed_sources(rows,'p1')
     title='EXPLORATORY historical logs' if exploratory else 'Verified matched runs'
     for metric in ('encoding_time','solving_time'):
-        matched=select(runs,'encoding',SAT,'p1',tag+'_'+metric,lambda r:r['method']==method and r['proof']=='optimal',metric,exploratory)
-        boxes(matched,lambda r:r['group']+' / '+r['encoding'],metric,title+'; proven runs; '+method,tag+'_'+metric)
+        matched=select(runs,'encoding',SAT,'p1',tag+'_'+metric,lambda r:r['method']==method and (r['proof']=='optimal' or r['source'] in best_sources),metric,exploratory)
+        boxes(matched,lambda r:r['group']+' / '+r['encoding'],metric,title+'; optimal or best-observed runs; '+method,tag+'_'+metric)
     heat(rows,'encoding',title+'; '+method,tag+'_timeout')
     emit(tag+'_timeout_phases',['Encoding','Phase','Runs'],[[enc,phase,sum(phase in (r.get('timeout_phase') or '').split(',') for r in rows if r['encoding']==enc)] for enc in SAT for phase in ('encoding','solving','total')], 'Recorded timeout phase only; historical unknown phases are not inferred.')
     sizes=select(runs,'encoding',SAT,'p1',tag+'_sizes',lambda r:r['method']==method,exploratory=exploratory,extra='first_k')
@@ -262,15 +270,15 @@ def part1(runs,method='Repeated',exploratory=False):
             by=grouped(rs,lambda r:r['vertices']); xs=sorted(by)
             plt.plot(xs,[median([r[metric] for r in by[x]]) for x in xs],marker='o',label=enc)
         plt.xlabel('Vertices'); plt.ylabel(metric); plt.title(title+'; first attempt, matched graph and k; median at each n'); plt.legend(); save(tag+'_'+metric)
-    speed=select(runs,'encoding',SAT,'p1',tag+'_runtime',lambda r:r['method']==method and r['proof']=='optimal',metric='total_time',exploratory=exploratory)
-    paired(speed,'encoding',SAT,'total_time',tag+'_paired_time',title+'; '+method,'p1')
-    headers=['Encoding','Graphs','Runs','Optimal timed n','Encoding timed n','Solve timed n','Encoding median','Encoding IQR','Solve median','Solve IQR','Total median','Total IQR','Timeout','Feasible']
+    speed=select(runs,'encoding',SAT,'p1',tag+'_runtime',lambda r:r['method']==method and (r['proof']=='optimal' or r['source'] in best_sources),metric='total_time',exploratory=exploratory)
+    paired(speed,'encoding',SAT,'total_time',tag+'_paired_time',title+'; optimal or best-observed runs; k may differ','p1')
+    headers=['Encoding','Graphs','Runs','Optimal/best-observed timed n','Encoding timed n','Solve timed n','Encoding median','Encoding IQR','Solve median','Solve IQR','Total median','Total IQR','Timeout','Feasible']
     data=[]
     for enc,rs in sorted(grouped(rows,lambda r:r['encoding']).items()):
         done=[r for r in speed if r['encoding']==enc]
         samples={k:[r for r in common([r for r in speed if r.get(k) is not None],'encoding',SAT,lambda r:stratum(r,'p1')) if r['encoding']==enc] for k in ('encoding_time','solving_time','total_time')}
         data.append([enc,len({r['graph_id'] for r in rs}),len(rs),len(done),len(samples['encoding_time']),len(samples['solving_time']),*[f([r[k] for r in samples[k]]) for k in ('encoding_time','solving_time','total_time') for f in (median,iqr)],sum(r['timeout'] for r in rs),sum(r['best_k'] is not None for r in rs)])
-    emit(tag+'_summary',headers,data,title+'; runtime statistics use common proven runs only; historical solve includes setup.')
+    emit(tag+'_summary',headers,data,title+'; runtime statistics use common proven or best-observed runs; k may differ; historical solve includes setup.')
     emit(tag+'_results',['Graph','Encoding','UB','LB','Proof','Timeout','Time basis'],[[r['graph_id'],r['encoding'],r['best_k'],r['lower_bound'],r['proof'],r['timeout'],r['time_basis']] for r in rows],title)
     data=[]
     for enc,rs in sorted(grouped(sizes,lambda r:r['encoding']).items()):
@@ -285,9 +293,10 @@ def part2a(runs,exploratory=False):
     for enc in SAT:
         tag='p2a_'+enc+('_exploratory' if exploratory else '')
         rows=select(runs,'method',cats,'p2a',tag,lambda r:r['encoding']==enc,exploratory=exploratory)
-        speed=select(runs,'method',cats,'p2a',tag+'_runtime',lambda r:r['encoding']==enc and r['proof']=='optimal',metric='total_time',exploratory=exploratory)
+        best_sources=best_observed_sources(rows,'p2a')
+        speed=select(runs,'method',cats,'p2a',tag+'_runtime',lambda r:r['encoding']==enc and (r['proof']=='optimal' or r['source'] in best_sources),metric='total_time',exploratory=exploratory)
         title=('EXPLORATORY; ' if exploratory else 'Verified; ')+enc
-        boxes(speed,lambda r:r['group']+' / '+r['method'],'total_time',title+'; common proven runs',tag+'_total_time')
+        boxes(speed,lambda r:r['group']+' / '+r['method'],'total_time',title+'; common proven-optimal or best-observed runs; k may differ',tag+'_total_time')
         heat(rows,'method',title,tag+'_timeout')
         paired(rows,'method',cats,'best_k',tag+'_best_colors',title,'p2a')
         for metric in ('attempts','solver_calls'):
@@ -297,18 +306,24 @@ def part2a(runs,exploratory=False):
                 for timed,marker in ((False,'o'),(True,'x')):
                     subset=[r for r in rs if r['timeout']==timed]
                     plt.scatter([r[metric] for r in subset],[r['total_time'] for r in subset],marker=marker,label=method+(' timeout' if timed else ''),alpha=.6)
+            plt.yscale('symlog',linthresh=1)
             plt.xlabel(metric); plt.ylabel('Observed runtime (s), not time to solution for timeout'); plt.title(title); plt.legend(fontsize=7); save(tag+'_'+metric+'_time')
         data=[]
         for method,rs in sorted(grouped(rows,lambda r:r['method']).items()):
             done=[r for r in speed if r['method']==method]
             data.append([method,len(rs),len(done),median([r['total_time'] for r in done]),iqr([r['total_time'] for r in done]),sum(r['timeout'] for r in rs),median([r['attempts'] for r in rs]),median([r['solver_calls'] for r in rs]),median([r['best_k'] for r in rs]),100*sum(r['proof']=='optimal' for r in rs)/len(rs)])
-        emit(tag+'_methods',['Method','Runs','Optimal timed n','Median time','IQR time','Timeout','Median attempts','Median calls','Median best colors','Optimal %'],data,title+'; median colors describes this dataset, not paired quality advantage.')
+        emit(tag+'_methods',['Method','Runs','Optimal/best-observed timed n','Median time','IQR time','Timeout','Median attempts','Median calls','Median best colors','Optimal %'],data,title+'; runtime includes common proven or best-observed runs, where k may differ; median colors describes this dataset, not paired quality advantage.')
         emit(tag+'_results',['Graph','Method','UB','LB','Proof','Timeout'],[[r['graph_id'],r['method'],r['best_k'],r['lower_bound'],r['proof'],r['timeout']] for r in rows],title)
 
-def performance_profile(rows,categories=BACKENDS):
+def performance_profile(rows,categories=BACKENDS,best_sources=None):
     cases=grouped(rows,lambda r:stratum(r,'p2b')); ratios=defaultdict(list)
     for rs in cases.values():
-        good=[r for r in rs if r['proof']=='optimal' and r['total_time'] is not None and r['total_time']>0]
+        good=[
+            r for r in rs
+            if (r['proof']=='optimal' or (best_sources and r['source'] in best_sources))
+            and r['total_time'] is not None
+            and r['total_time']>0
+        ]
         if not good: continue
         best=min(r['total_time'] for r in good)
         for r in good: ratios[r['encoding']].append(r['total_time']/best)
@@ -316,25 +331,62 @@ def performance_profile(rows,categories=BACKENDS):
     xmax=max(2,max(max(v) for v in ratios.values())*1.05)
     return {c:[(x,sum(v<=x for v in ratios[c])/len(cases)) for x in sorted(set([1,xmax]+ratios[c]))] for c in categories}
 
-def part2b(runs,sat_encoding='POHP',exploratory=False):
-    cats=(sat_encoding,'Gurobi_ILP','CPLEX_MIP','CPLEX_CP')
-    for method in ('Repeated','Binary'):
+def best_observed_sources(rows,part='p2b'):
+    """Find categories with the lowest recorded feasible color count per comparison."""
+    best_by_group={}
+    categories_by_group=defaultdict(set)
+    for row in rows:
+        if row['proof'] not in ('optimal','feasible') or row.get('best_k') is None:
+            continue
+        group=stratum(row,part)
+        category='method' if part=='p2a' else 'encoding'
+        categories_by_group[group].add(row[category])
+        best_by_group[group]=min(best_by_group.get(group,float('inf')),row['best_k'])
+    return {
+        row['source']
+        for row in rows
+        if row['proof']=='feasible'
+        and row.get('best_k') is not None
+        and len(categories_by_group[stratum(row,part)]) > 1
+        and row['best_k']==best_by_group.get(stratum(row,part))
+    }
+
+def comparative_outcome(row,best_sources):
+    if row['proof']=='optimal':
+        return 'optimal'
+    if row['source'] in best_sources:
+        return 'best_observed'
+    if row['proof']=='feasible':
+        return 'feasible'
+    return 'unknown'
+
+def part2b(runs,exploratory=False):
+    for method in P2B_METHODS:
+        cats=P2B_ENCODINGS if method=='Incremental' else BACKENDS
+        keep_unmatched=method=='Incremental'
         tag='p2b_'+method+('_exploratory' if exploratory else '')
-        rows=select(runs,'encoding',cats,'p2b',tag,lambda r:r['method']==method,exploratory=exploratory)
-        speed=select(runs,'encoding',cats,'p2b',tag+'_runtime',lambda r:r['method']==method and r['proof']=='optimal',metric='total_time',exploratory=exploratory)
-        title=('EXPLORATORY; ' if exploratory else 'Verified; ')+method+'; SAT='+sat_encoding
-        boxes(speed,lambda r:r['encoding'],'total_time',title+'; common proven runs',tag+'_total_time')
+        rows=select(runs,'encoding',cats,'p2b',tag,lambda r:r['method']==method,exploratory=exploratory,require_common=not keep_unmatched)
+        best_sources=best_observed_sources(rows)
+        speed=select(runs,'encoding',cats,'p2b',tag+'_runtime',lambda r:r['method']==method and (r['proof']=='optimal' or r['source'] in best_sources),metric='total_time',exploratory=exploratory,require_common=not keep_unmatched)
+        title=('EXPLORATORY; ' if exploratory else 'Verified; ')+method+'; SAT, POP and POHP encodings'
+        boxes(speed,lambda r:r['encoding'],'total_time',title+'; common proven-optimal or best-observed runs; k may differ',tag+'_total_time')
         heat(rows,'encoding',title,tag+'_timeout')
         cells=grouped(rows,lambda r:r['encoding'])
         if not rows: no_data(title)
         else:
             plt.figure(figsize=(9,5)); bottom=[0]*len(cats)
-            for outcome in ('optimal','feasible','unknown'):
-                vals=[100*sum(r['proof']==outcome for r in cells[c])/len(cells[c]) for c in cats]
-                plt.bar(cats,vals,bottom=bottom,label=outcome); bottom=[a+b for a,b in zip(bottom,vals)]
+            outcome_colors={
+                'optimal':'tab:blue',
+                'best_observed':'tab:green',
+                'feasible':'tab:orange',
+                'unknown':'tab:red',
+            }
+            for outcome in ('optimal','best_observed','feasible','unknown'):
+                vals=[100*sum(comparative_outcome(r,best_sources)==outcome for r in cells[c])/len(cells[c]) for c in cats]
+                plt.bar(cats,vals,bottom=bottom,label=outcome,color=outcome_colors[outcome]); bottom=[a+b for a,b in zip(bottom,vals)]
             plt.ylabel('Runs (%)'); plt.legend(); plt.title(title)
         save(tag+'_outcomes')
-        profile=performance_profile(rows,cats)
+        profile=performance_profile(speed,cats,best_sources)
         if not profile: no_data(title+'; no proven timed runs')
         else:
             plt.figure(figsize=(8,5))
@@ -345,8 +397,13 @@ def part2b(runs,sat_encoding='POHP',exploratory=False):
         data=[]
         for c in cats:
             rs=cells.get(c,[]); done=[r for r in speed if r['encoding']==c]
-            data.append([c,len({r['graph_id'] for r in rs}),len(rs),sum(r['best_k'] is not None for r in rs),sum(r['proof']=='optimal' for r in rs),sum(r['timeout'] for r in rs),len(done),median([r['total_time'] for r in done]),iqr([r['total_time'] for r in done]),median([r['gap'] for r in rs if r['proof']=='feasible'])])
-        emit(tag+'_backends',['Backend','Common graphs','Runs','Feasible','Optimal','Timeout','Optimal timed n','Median time','IQR time','Median unproven gap'],data,title)
+            data.append([c,len({r['graph_id'] for r in rs}),len(rs),sum(r['best_k'] is not None for r in rs),sum(r['proof']=='optimal' for r in rs),sum(r['source'] in best_sources for r in rs),sum(r['timeout'] for r in rs),len(done),median([r['total_time'] for r in done]),iqr([r['total_time'] for r in done]),median([r['gap'] for r in rs if r['proof']=='feasible'])])
+        if keep_unmatched:
+            scope='Incremental includes SAT, POP and POHP only and retains available graph records.'
+        else:
+            scope='Includes all six encodings and only common matched graphs.'
+        emit(tag+'_backends',['Encoding/backend','Graphs','Runs','Feasible','Optimal','Best observed','Timeout','Optimal timed n','Median time','IQR time','Median unproven gap'],data,title+'; '+scope+' Best observed is comparative, not an optimality proof.')
+        emit(tag+'_results',['Graph','Encoding','UB','LB','Proof','Comparative result','Timeout'],[[r['graph_id'],r['encoding'],r['best_k'],r['lower_bound'],r['proof'],comparative_outcome(r,best_sources),r['timeout']] for r in rows],title)
         pair_data=[]
         for a,b in combinations(cats,2):
             pair=select(runs,'encoding',(a,b),'p2b',tag+'_pair_'+a+'_'+b,lambda r:r['method']==method,exploratory=exploratory)
@@ -389,7 +446,8 @@ def conclusions(runs):
     text=['# Analysis findings',f'Input run records: {len(runs)}. Verified metadata: {verified}.',
           'Primary comparisons require verified metadata. Historical outputs have exploratory labels; they cannot establish a controlled ranking.',
           'Legacy POP logs are not evidence for the new partial-order implementation. See rerun_needed.csv.',
-          'Runtime tables compare common proven-optimal runs. Timeout and missing outcomes remain in coverage; timeout duration is not solution time.',
+          'Pairwise runtime tables use common proven-optimal runs. Runtime plots may also include the best-observed feasible result; k can differ across methods or encodings. Timeout and missing outcomes remain in coverage; timeout duration is not solution time.',
+          'Best observed means the lowest recorded valid best_k among methods or encodings in the same graph comparison; it is comparative only and does not prove optimality. A timeout alone is not evidence that its current k is feasible.',
           'Historical lower bounds can omit the original bound calculation. Historical solve times may include setup. No historical wall-clock values are reconstructed.',
           'Gap uses (UB-LB)/UB and only recorded certified bounds; missing values are not zero. SAT/ILP/CP quality is assessed separately from speed.',
           'Each membership table identifies included/excluded source files. No fastest-repeat selection is performed.',
@@ -397,7 +455,6 @@ def conclusions(runs):
           'Expected coverage requires --expected; without it completely absent runs cannot be counted.']
     (FIG.parent/'findings.md').write_text('\n\n'.join(text)+'\n')
 
-# A data-backed supplement; avoids manufacturing a ranking when primary cohorts are empty.
 def empirical_findings():
     lines=['## Observations from generated tables']
     for path in sorted(TABLES.glob('*_summary.csv')):
@@ -410,8 +467,8 @@ def empirical_findings():
                 valid=[r for r in rows if number(r.get(metric)) is not None]
                 if valid:
                     best=min(valid,key=lambda r:number(r[metric]))
-                    lines.append(f'- Lowest {metric}: {best["Encoding"]}, {float(best[metric]):.6g} s; common proven timed n={best["Optimal timed n"]}.')
-            lines.append('These medians apply only to the matched proven subset. Use timeout/feasible counts and IQR alongside speed; no overall winner follows from speed alone.')
+                    lines.append(f'- Lowest {metric}: {best["Encoding"]}, {float(best[metric]):.6g} s; common optimal/best-observed timed n={best["Optimal/best-observed timed n"]}.')
+            lines.append('These medians apply only to the matched proven or best-observed subset. k may differ; use timeout/feasible counts and IQR alongside speed; no overall winner follows from speed alone.')
     for path in sorted(TABLES.glob('p2a_*_methods.csv')):
         rows=read_csv(path)
         if not rows: continue

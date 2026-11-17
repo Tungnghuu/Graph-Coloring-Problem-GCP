@@ -1,8 +1,3 @@
-"""Reproducible fresh runs; never overwrites legacy results.
-
-Example: python project_analysis/benchmark_suite.py --graph data/100_or_less/queen5_5.col
-Native backends are opt-in because licenses/executables may be unavailable.
-"""
 import argparse
 import csv
 import json
@@ -18,7 +13,6 @@ from src.solver.baseline import SATSolver
 from src.encoding import POHPEncoding
 from src.utils.graph_io import read_col
 from src.utils.graph_validation import is_valid_coloring
-
 
 def sweep(graph_path,out,ks,solve_limit,encoding_limit):
     graph=read_col(graph_path); backend=SATSolver('g3')
@@ -50,7 +44,6 @@ def sweep(graph_path,out,ks,solve_limit,encoding_limit):
     except Exception as error:
         writer.finish(completion='Error',lower_bound=None,best_k=None,reason=str(error)); raise
     return path
-
 
 def main():
     p=argparse.ArgumentParser()

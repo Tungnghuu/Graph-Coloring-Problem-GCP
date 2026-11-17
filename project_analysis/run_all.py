@@ -1,4 +1,3 @@
-"""Run the complete analysis without launching expensive benchmarks."""
 from pathlib import Path
 import argparse
 from datetime import datetime, timezone
@@ -19,7 +18,6 @@ def archive_outputs(output):
         for path in existing:
             path.rename(archive/path.name)
 
-
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--source',type=Path,action='append')
@@ -27,7 +25,6 @@ def main():
     p.add_argument('--output',type=Path,default=core.ROOT)
     p.add_argument('--expected',type=Path)
     p.add_argument('--part1-method',choices=('Repeated','Binary','Incremental'),default='Repeated')
-    p.add_argument('--sat-encoding',choices=reports.SAT,default='POHP')
     mode=p.add_mutually_exclusive_group()
     mode.add_argument('--verified-only',action='store_true',help='Require verified metadata; skip unavailable figures')
     mode.add_argument('--exploratory',action='store_true',help='Use historical data with explicit caveats (default)')
@@ -40,7 +37,7 @@ def main():
     exploratory=not args.verified_only
     reports.part1(runs,args.part1_method,exploratory)
     reports.part2a(runs,exploratory)
-    reports.part2b(runs,args.sat_encoding,exploratory)
+    reports.part2b(runs,exploratory=exploratory)
     reports.part3(); reports.conclusions(runs); reports.empirical_findings(); reports.write_figure_status()
     members=[]
     for path in sorted(reports.TABLES.glob('*_membership.csv')):

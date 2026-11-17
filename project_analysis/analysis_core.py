@@ -1,4 +1,3 @@
-"""Evidence-preserving readers for legacy attempts and versioned run manifests."""
 from collections import Counter, defaultdict
 from pathlib import Path
 import csv
@@ -18,7 +17,6 @@ FIELDS = ['source','run_id','graph','graph_id','group','vertices','edges','metho
 ATTEMPT_FIELDS = ['source','graph','graph_id','group','vertices','edges','method','encoding','backend',
  'k','status','num_variables','num_clauses','valid_coloring','bounds_time','encoding_time','setup_time',
  'solving_time','total_time','solver_called','timed_out','timeout_phase','best_k','backend_status']
-
 
 def write_csv(path, rows, fields):
     path.parent.mkdir(parents=True,exist_ok=True)
@@ -216,18 +214,9 @@ def fmt(value):
     if isinstance(value,float): return f'{value:.3g}'
     return str(value)
 
-def tex_escape(s):
-    s=str(s)
-    for a,b in [ ('\\',r'\textbackslash{}'), ('_',r'\_'),('%',r'\%'),('&',r'\&'),('#',r'\#')]: s=s.replace(a,b)
-    return s
-
 def table(name, headers, rows, caption, output=ROOT/'outputs'/'tables'):
     output.mkdir(parents=True,exist_ok=True)
-    lines=[r'\begin{table}[htbp]',r'\centering',r'\caption{'+tex_escape(caption)+'}',r'\label{tab:'+name.replace('_','-')+'}',r'\begin{tabular}{'+'l'*len(headers)+'}',r'\hline', ' & '.join(map(tex_escape,headers))+r' \\',r'\hline']
-    lines += [' & '.join(tex_escape(fmt(v)) for v in row)+r' \\' for row in rows]
-    lines += [r'\hline',r'\end{tabular}',r'\end{table}']
     write_csv(output/(name+'.csv'), [dict(zip(headers,row)) for row in rows], headers)
-    (output/(name+'.tex')).write_text('\n'.join(lines)+'\n',encoding='utf-8')
 
 def grouped(rows,key):
     d=defaultdict(list)
