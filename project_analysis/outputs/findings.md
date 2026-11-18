@@ -33,11 +33,11 @@ Exploratory, not a controlled conclusion (p1_Repeated_exploratory_summary):
 
 These medians apply only to the matched proven or best-observed subset. k may differ; use timeout/feasible counts and IQR alongside speed; no overall winner follows from speed alone.
 
-p2a_POHP_exploratory_methods: Binary: optimal=7.042253521126761%, timeout=33/71, median attempts=2.0; Incremental: optimal=7.042253521126761%, timeout=35/71, median attempts=2.0; Repeated: optimal=7.042253521126761%, timeout=35/71, median attempts=2.0.
+p2a_POHP_exploratory_methods: Binary: optimal=7.042253521126761%, timeout=33/71, median attempts=2; Incremental: optimal=7.042253521126761%, timeout=35/71, median attempts=2; Repeated: optimal=7.042253521126761%, timeout=35/71, median attempts=2.
 
-p2a_POP_exploratory_methods: Binary: optimal=7.6923076923076925%, timeout=28/65, median attempts=2.0; Incremental: optimal=7.6923076923076925%, timeout=29/65, median attempts=2.0; Repeated: optimal=7.6923076923076925%, timeout=28/65, median attempts=2.0.
+p2a_POP_exploratory_methods: Binary: optimal=7.6923076923076925%, timeout=28/65, median attempts=2; Incremental: optimal=7.6923076923076925%, timeout=29/65, median attempts=2; Repeated: optimal=7.6923076923076925%, timeout=28/65, median attempts=2.
 
-p2a_SAT_exploratory_methods: Binary: optimal=7.6923076923076925%, timeout=28/65, median attempts=2.0; Incremental: optimal=7.6923076923076925%, timeout=30/65, median attempts=2.0; Repeated: optimal=7.6923076923076925%, timeout=27/65, median attempts=2.0.
+p2a_SAT_exploratory_methods: Binary: optimal=7.6923076923076925%, timeout=28/65, median attempts=2; Incremental: optimal=7.6923076923076925%, timeout=30/65, median attempts=2; Repeated: optimal=7.6923076923076925%, timeout=27/65, median attempts=2.
 
 p2b_Binary_exploratory_pairs: SAT vs POP, common cases=72, both proven timed=6; medians=0.08903675008332357 / 0.05523315002210438 s. Pairwise samples can differ; do not combine these into a universal ordering.
 
@@ -147,6 +147,6 @@ Size, density, k and structure can all affect difficulty. Single-graph bucket sa
 ## Skipped figures
 
 No placeholder images are exported. See figure_status.csv for every figure.
-- p2a_so_lan_goi_solver_va_thoi_gian_sat: No matched observations with the required metric; see membership tables.
-- p2a_so_lan_goi_solver_va_thoi_gian_pop: No matched observations with the required metric; see membership tables.
-- p2a_so_lan_goi_solver_va_thoi_gian_pohp: No matched observations with the required metric; see membership tables.
+- p2a_solver_calls_vs_runtime_sat: No matched observations with the required metric; see membership tables.
+- p2a_solver_calls_vs_runtime_pop: No matched observations with the required metric; see membership tables.
+- p2a_solver_calls_vs_runtime_pohp: No matched observations with the required metric; see membership tables.

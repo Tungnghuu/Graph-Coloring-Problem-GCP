@@ -1,11 +1,11 @@
 from pathlib import Path
-
 from .analysis_core import clean_runs, load_runs, median
 from .reports import SAT, best_observed_sources, common, stratum
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'tables'
 METHOD = 'Repeated'
+
 LATEX_SPECIAL = {
     '\\': r'\textbackslash{}',
     '&': r'\&',
