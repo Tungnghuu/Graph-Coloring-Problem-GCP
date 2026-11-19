@@ -8,7 +8,7 @@ Pipeline bao gồm tiền xử lý, coverage/configuration, phần 1 (encoding),
 Từ thư mục gốc:
 
 ```sh
-python -m pip install -r project_analysis/requirements.txt
+python -m pip install -r requirements.txt
 python -m unittest discover -s project_analysis/tests -v
 python -m project_analysis.run_all --exploratory
 ```
