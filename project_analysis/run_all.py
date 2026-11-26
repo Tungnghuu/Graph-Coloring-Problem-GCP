@@ -1,6 +1,6 @@
 from pathlib import Path
 import argparse
-from datetime import datetime, timezone
+import shutil
 
 if __package__:
     import importlib
@@ -13,28 +13,13 @@ else:
     import analysis_core as core
     preprocessing = importlib.import_module("01_preprocess")
 
-def archive_outputs(output_directory):
-    report_names = (
-        'figures',
-        'tables',
-        'findings.md',
-        'figure_status.csv',
-    )
-    existing_reports = [
-        output_directory / name
-        for name in report_names
-        if (output_directory / name).exists()
-    ]
-
-    if existing_reports:
-        timestamp = datetime.now(timezone.utc).strftime(
-            '%Y%m%dT%H%M%S%fZ'
-        )
-        archive_directory = output_directory / 'archive' / timestamp
-        archive_directory.mkdir(parents=True)
-
-        for report_path in existing_reports:
-            report_path.rename(archive_directory / report_path.name)
+def clear_outputs(output_directory):
+    for name in ('figures', 'tables', 'figure_status.csv'):
+        path = output_directory / name
+        if path.is_dir():
+            shutil.rmtree(path)
+        elif path.exists():
+            path.unlink()
 
 def parse_arguments():
     parser = argparse.ArgumentParser(
@@ -103,7 +88,7 @@ def main():
         args.expected,
     )
 
-    archive_outputs(args.output / 'outputs')
+    clear_outputs(args.output / 'outputs')
     reports.FIGURE_STATUS.clear()
 
     reports.overview(runs, issues)
@@ -115,8 +100,6 @@ def main():
     reports.part2b(runs, exploratory=exploratory)
     reports.part3()
 
-    reports.conclusions(runs)
-    reports.empirical_findings()
     reports.write_figure_status()
 
     membership_rows = []

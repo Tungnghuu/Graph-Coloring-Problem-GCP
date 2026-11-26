@@ -1,7 +1,7 @@
 # Phân tích thực nghiệm GCP
 
 Pipeline bao gồm tiền xử lý, coverage/configuration, phần 1 (encoding), 2A
-(search), 2B (backend), phần 3 (k-sweep), membership và nhận xét từ bảng số liệu.
+(search), 2B (backend), phần 3 (k-sweep), membership. Thư mục này chỉ giữ các script tạo hình và bảng.
 
 ## Chạy và kiểm chứng
 
@@ -9,14 +9,11 @@ Từ thư mục gốc:
 
 ```sh
 python -m pip install -r requirements.txt
-python -m unittest discover -s project_analysis/tests -v
 python -m project_analysis.run_all --exploratory
 ```
 
 Có thể đặt `MPLCONFIGDIR=/tmp/gcp-mpl XDG_CACHE_HOME=/tmp/gcp-cache` khi HOME
-không ghi được. Test solver cần `python-sat`; các test adapter native dùng mock
-và không chứng minh runtime thương mại đã được cài. Test pipeline tạo dữ liệu
-synthetic trong thư mục tạm, chạy CLI và xác nhận các file CSV/PDF/PNG.
+không ghi được.
 
 ```sh
 python project_analysis/run_all.py \
@@ -27,41 +24,6 @@ python project_analysis/run_all.py \
 `--source` có thể lặp. `--output` là gốc chứa `processed/` và `outputs/`.
 Không đọc các thư mục validation/reviewed tự động. Pipeline không chạy benchmark.
 Các script 01–06 vẫn chạy riêng được với vị trí mặc định.
-
-## Thí nghiệm mới
-
-```sh
-python project_analysis/benchmark_suite.py \
-  --graph data/100_or_less/myciel3.col \
-  --output results_v2_session1 --sweep \
-  --solve-limit 30 --encoding-limit 30 --run-limit 120
-python project_analysis/run_all.py --source results_v2_session1 \
-  --expected results_v2_session1.expected.csv --output analysis_session1
-```
-
-Thêm `--native` để chạy Gurobi/CPLEX. Công cụ từ chối thư mục output đã tồn tại,
-không ghi đè dữ liệu cũ. Kết quả lỗi ghi vào `.errors.json` và run manifest;
-không tự chuyển lỗi license/runtime thành timeout. Mỗi native backend dùng một
-worker; các tham số còn lại dùng mặc định phiên bản được ghi trong metadata.
-Gurobi có thể cần kết nối máy chủ license. CPLEX MIP cần runtime CPLEX; CPLEX CP
-cần executable `cpoptimizer`.
-
-Có thể truyền nhiều `--graph`. Để chọn một graph mỗi bucket và khoảng k cụ thể:
-
-```csv
-path,k_min,k_max
-data/100_or_less/myciel3.col,2,5
-```
-
-```sh
-python project_analysis/benchmark_suite.py --representatives selected_graphs.csv \
-  --sweep-only --output new_k_sweep
-```
-
-Nếu không chỉ định khoảng k, dùng [LB-2, UB+2], giới hạn trong [1,n]. Người chạy
-cần xem lại độ rộng khoảng này trước thí nghiệm lớn. K-sweep luôn là các lần
-Repeated POHP độc lập, không dừng khi gặp UNSAT; khác với tìm sắc số.
-Không dùng graph smoke test để kết luận toàn bộ dataset.
 
 ## Quy tắc dữ liệu
 
@@ -140,8 +102,7 @@ POP mới dùng y[v,c] = (color(v)>c), core clauses (12a–d) và symmetry bound
 trong [Faber et al., SAT 2024](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SAT.2024.12).
 Đây là biến thể core POP với vertex-index symmetry, không tuyên bố tái lập toàn
 bộ POP-S cùng mọi symmetry của bài báo. Decode/forbid-color hoạt động trực tiếp
-trên biến thứ tự. Test vét cạn kiểm tra cả bật/tắt symmetry.
-
+trên biến thứ tự. 
 CSV POP cũ không được đổi nhãn thành kết quả của implementation mới. Danh sách
 `rerun_needed.csv` nêu các run cần xác minh/chạy lại. Không thể khôi phục setup,
 wall-clock, bounds hoặc lý do dừng chính xác nếu log cũ không ghi.
@@ -152,8 +113,8 @@ wall-clock, bounds hoặc lý do dừng chính xác nếu log cũ không ghi.
 configurations, data_quality, rerun_needed, comparison_membership.
 
 `outputs/tables/`: CSV và LaTeX cho mọi bảng, bao gồm membership theo từng phép
-so sánh. `outputs/figures/`: PNG/PDF. `outputs/findings.md`: giới hạn và nhận xét
-mô tả từ các bảng/graph có dữ liệu; không tự tạo kết luận khi cohort rỗng.
+so sánh. `outputs/figures/`: PNG/PDF. Bảng LaTeX tổng hợp cho báo cáo
+(`output/tables/table1–3`) được tạo bằng `python -m project_analysis.export_latex_tables`.
 
 Xem `VERIFICATION.md` để đối chiếu kế hoạch với test. Các kết quả trước lần sửa
 được giữ riêng; chỉ các đầu ra của pipeline mới có các quy ước ở tài liệu này.
@@ -166,13 +127,6 @@ kiện chứng minh tối ưu để làm đầy biểu đồ. Dùng `--verified-
 so sánh các run có metadata đã xác minh.
 
 Không xuất ảnh thông báo trắng hoặc trục không có dữ liệu. Xem
-`outputs/figure_status.csv` và phần Skipped figures trong `outputs/findings.md`
-để biết biểu đồ nào được tạo/bỏ qua và lý do. Mỗi lần chạy chuyển báo cáo trước
-vào `outputs/archive/<timestamp>/` để ảnh và bảng cũ không lẫn với kết quả mới.
+`outputs/figure_status.csv` để biết biểu đồ nào được tạo/bỏ qua và lý do. Mỗi lần
+chạy xóa hình và bảng cũ trong `outputs/` trước khi tạo lại.
 Dữ liệu CSV gốc không bị thay đổi.
-
-Kiểm tra hồi quy cho hành vi này:
-
-```sh
-python -m unittest project_analysis.test_reporting -v
-```

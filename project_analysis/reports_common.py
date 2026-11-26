@@ -173,12 +173,6 @@ def no_data(title):
 def write_figure_status():
     write_csv(FIG.parent/'figure_status.csv', FIGURE_STATUS,
               ['figure', 'comparison_id', 'status', 'title', 'caption', 'comparison_notes', 'reason'])
-    skipped = [r for r in FIGURE_STATUS if r['status'] == 'skipped']
-    with (FIG.parent/'findings.md').open('a') as f:
-        f.write('\n\n## Skipped figures\n\n')
-        f.write('No placeholder images are exported. See figure_status.csv for every figure.\n')
-        for row in skipped:
-            f.write(f'- {row["figure"]}: {row["reason"]}\n')
 
 def emit(name, headers, rows, caption):
     table(name, headers, rows, caption, output=TABLES)
@@ -494,8 +488,6 @@ def paired(rows, key, cats, value, name, title, part):
 
     save(name)
 
-
-
 def performance_profile(
     rows,
     categories=BACKENDS,
@@ -566,7 +558,6 @@ def performance_profile(
 
     return profile_points
 
-
 def best_observed_sources(rows, part='p2b'):
     best_by_group={}
     categories_by_group=defaultdict(set)
@@ -585,7 +576,6 @@ def best_observed_sources(rows, part='p2b'):
         and len(categories_by_group[stratum(row,part)]) > 1
         and row['best_k']==best_by_group.get(stratum(row,part))
     }
-
 
 def comparative_outcome(row, best_sources):
     if row['proof'] == 'optimal':

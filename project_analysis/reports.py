@@ -34,7 +34,6 @@ if __package__:
     _part2a = importlib.import_module('.04_part2a_sat_methods', __package__)
     _part2b = importlib.import_module('.05_part2b_solver_families', __package__)
     _part3 = importlib.import_module('.06_part3_k_sweep', __package__)
-    _findings = importlib.import_module('.report_findings', __package__)
     from . import reports_common as _shared
 else:
     _overview = importlib.import_module('02_overview_tables')
@@ -42,7 +41,6 @@ else:
     _part2a = importlib.import_module('04_part2a_sat_methods')
     _part2b = importlib.import_module('05_part2b_solver_families')
     _part3 = importlib.import_module('06_part3_k_sweep')
-    _findings = importlib.import_module('report_findings')
     import reports_common as _shared
 
 _base_save = _shared.save
@@ -118,12 +116,6 @@ def part2b(runs, exploratory=False):
 
 def part3():
     return _invoke_section(_part3, 'part3')
-
-def conclusions(runs):
-    return _invoke_section(_findings, 'conclusions', runs)
-
-def empirical_findings():
-    return _invoke_section(_findings, 'empirical_findings')
 
 def write_figure_status():
     _shared.ROOT = ROOT
