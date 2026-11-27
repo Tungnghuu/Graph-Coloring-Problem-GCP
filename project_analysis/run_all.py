@@ -94,6 +94,8 @@ def main():
     reports.overview(runs, issues)
 
     exploratory = not args.verified_only
+    if exploratory:
+        core.pool_exploratory(runs)
 
     reports.part1(runs, args.part1_method, exploratory)
     reports.part2a(runs, exploratory)

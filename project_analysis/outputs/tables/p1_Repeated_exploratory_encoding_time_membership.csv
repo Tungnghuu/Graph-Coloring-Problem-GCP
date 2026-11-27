@@ -498,10 +498,8 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen10_10_POP_res.csv,100_or_less\queen10_10.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen10_10_SAT_res.csv,100_or_less\queen10_10.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POHP_res.csv,dense\queen5_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POP_res.csv,dense\queen5_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_SAT_res.csv,dense\queen5_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POHP_res.csv,dense\queen6_6.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POP_res.csv,dense\queen6_6.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_SAT_res.csv,dense\queen6_6.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen7_7_POHP_res.csv,100_or_less\queen7_7.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen7_7_POP_res.csv,100_or_less\queen7_7.col,False,outside comparison scope
@@ -522,19 +520,15 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_1_POP_res.csv,250\DSJC125_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_1_SAT_res.csv,250\DSJC125_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POHP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_SAT_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POHP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_SAT_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_POHP_res.csv,250\DSJC250_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_POP_res.csv,250\DSJC250_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_SAT_res.csv,250\DSJC250_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POHP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_SAT_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POHP_res.csv,dense\DSJC250_9.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POP_res.csv,dense\DSJC250_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_SAT_res.csv,dense\DSJC250_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\games120_POHP_res.csv,250\games120.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\games120_POP_res.csv,250\games120.col,False,outside comparison scope
@@ -543,7 +537,6 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1000_POP_res.csv,250\miles1000.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1000_SAT_res.csv,250\miles1000.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POHP_res.csv,dense\miles1500.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POP_res.csv,dense\miles1500.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_SAT_res.csv,dense\miles1500.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles250_POHP_res.csv,250\miles250.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles250_POP_res.csv,250\miles250.col,False,outside comparison scope
@@ -918,7 +911,7 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\qu
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_CPLEX_MIP_res.csv,250\queen15_15.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_Gurobi_ILP_res.csv,250\queen15_15.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_POHP_res.csv,250\queen15_15.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_POP_res.csv,250\queen15_15.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_POP_res.csv,250\queen15_15.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\queen15_15_SAT_res.csv,250\queen15_15.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\zeroin_i_1_CPLEX_CP_res.csv,250\zeroin_i_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\250\zeroin_i_1_CPLEX_MIP_res.csv,250\zeroin_i_1.col,False,outside comparison scope
@@ -1019,15 +1012,15 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_CPLEX_CP_res.csv,500\le450_5a.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_CPLEX_MIP_res.csv,500\le450_5a.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_Gurobi_ILP_res.csv,500\le450_5a.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_POHP_res.csv,500\le450_5a.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_POP_res.csv,500\le450_5a.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_SAT_res.csv,500\le450_5a.col,True,
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_POHP_res.csv,500\le450_5a.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_POP_res.csv,500\le450_5a.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5a_SAT_res.csv,500\le450_5a.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_CPLEX_CP_res.csv,500\le450_5b.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_CPLEX_MIP_res.csv,500\le450_5b.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_Gurobi_ILP_res.csv,500\le450_5b.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_POHP_res.csv,500\le450_5b.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_POP_res.csv,500\le450_5b.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_SAT_res.csv,500\le450_5b.col,True,
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_POHP_res.csv,500\le450_5b.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_POP_res.csv,500\le450_5b.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5b_SAT_res.csv,500\le450_5b.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5c_CPLEX_CP_res.csv,500\le450_5c.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5c_CPLEX_MIP_res.csv,500\le450_5c.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\le450_5c_Gurobi_ILP_res.csv,500\le450_5c.col,False,outside comparison scope
@@ -1052,9 +1045,9 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\sc
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_CPLEX_CP_res.csv,500\school1_nsh.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_CPLEX_MIP_res.csv,500\school1_nsh.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_Gurobi_ILP_res.csv,500\school1_nsh.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_POHP_res.csv,500\school1_nsh.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_POP_res.csv,500\school1_nsh.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_SAT_res.csv,500\school1_nsh.col,True,
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_POHP_res.csv,500\school1_nsh.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_POP_res.csv,500\school1_nsh.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_nsh_SAT_res.csv,500\school1_nsh.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_POHP_res.csv,500\school1.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_POP_res.csv,500\school1.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\500\school1_SAT_res.csv,500\school1.col,True,
@@ -1092,19 +1085,19 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_CPLEX_MIP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_Gurobi_ILP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_POHP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_5_SAT_res.csv,dense\DSJC125_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_CPLEX_CP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_CPLEX_MIP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_Gurobi_ILP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_POHP_res.csv,dense\DSJC125_9.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,True,
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_SAT_res.csv,dense\DSJC125_9.col,True,
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_POHP_res.csv,dense\DSJC125_9.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,False,unmatched or repeated stratum
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC125_9_SAT_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_CPLEX_CP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_CPLEX_MIP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_Gurobi_ILP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_POHP_res.csv,dense\DSJC250_5.col,False,unmatched or repeated stratum
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_POHP_res.csv,dense\DSJC250_5.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_5_SAT_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_9_CPLEX_CP_res.csv,dense\DSJC250_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_9_CPLEX_MIP_res.csv,dense\DSJC250_9.col,False,outside comparison scope
@@ -1115,8 +1108,8 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_CPLEX_CP_res.csv,dense\DSJC500_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_CPLEX_MIP_res.csv,dense\DSJC500_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_Gurobi_ILP_res.csv,dense\DSJC500_5.col,False,outside comparison scope
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_POHP_res.csv,dense\DSJC500_5.col,False,unmatched or repeated stratum
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_POP_res.csv,dense\DSJC500_5.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_POHP_res.csv,dense\DSJC500_5.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_POP_res.csv,dense\DSJC500_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_5_SAT_res.csv,dense\DSJC500_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_9_CPLEX_CP_res.csv,dense\DSJC500_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC500_9_CPLEX_MIP_res.csv,dense\DSJC500_9.col,False,outside comparison scope
@@ -1158,19 +1151,19 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_CPLEX_MIP_res.csv,dense\flat300_20_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_Gurobi_ILP_res.csv,dense\flat300_20_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_POHP_res.csv,dense\flat300_20_0.col,False,unmatched or repeated stratum
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_POP_res.csv,dense\flat300_20_0.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_POP_res.csv,dense\flat300_20_0.col,False,metric missing
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_20_0_SAT_res.csv,dense\flat300_20_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_CPLEX_CP_res.csv,dense\flat300_26_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_CPLEX_MIP_res.csv,dense\flat300_26_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_Gurobi_ILP_res.csv,dense\flat300_26_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_POHP_res.csv,dense\flat300_26_0.col,False,unmatched or repeated stratum
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_POP_res.csv,dense\flat300_26_0.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_POP_res.csv,dense\flat300_26_0.col,False,metric missing
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_26_0_SAT_res.csv,dense\flat300_26_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_CPLEX_CP_res.csv,dense\flat300_28_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_CPLEX_MIP_res.csv,dense\flat300_28_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_Gurobi_ILP_res.csv,dense\flat300_28_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_POHP_res.csv,dense\flat300_28_0.col,False,unmatched or repeated stratum
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_POP_res.csv,dense\flat300_28_0.col,False,outside comparison scope
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_POP_res.csv,dense\flat300_28_0.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\flat300_28_0_SAT_res.csv,dense\flat300_28_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\miles1500_CPLEX_CP_res.csv,dense\miles1500.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\miles1500_CPLEX_MIP_res.csv,dense\miles1500.col,False,outside comparison scope

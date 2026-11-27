@@ -1,62 +1,39 @@
 source,issue,detail
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\1000\DSJC1000_1_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\1000\DSJC1000_1_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJC500_5_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJC500_5_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJC500_9_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJC500_9_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJR500_1c_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJR500_1c_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJR500_5_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\DSJR500_5_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\flat300_26_0_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Binary\with_bm\dense\flat300_26_0_SAT_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJR500_5_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_9_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJC250_9_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJR500_1c_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJR500_1c_SAT_res.csv,invalid_row,line 2: k/status
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJR500_5_POP_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\dense\DSJR500_5_SAT_res.csv,invalid_row,line 2: k/status
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POHP_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_POHP_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POP_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_POP_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_SAT_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_SAT_res.csv,repeated_configuration,"('dense\\queen5_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POHP_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_POHP_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POP_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_POP_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_SAT_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_SAT_res.csv,repeated_configuration,"('dense\\queen6_6.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POHP_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_POHP_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POP_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_POP_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_SAT_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_SAT_res.csv,repeated_configuration,"('dense\\DSJC125_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POHP_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_POHP_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POP_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_POP_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_SAT_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_SAT_res.csv,repeated_configuration,"('dense\\DSJC125_9.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POHP_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_POHP_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POP_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_POP_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_SAT_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_SAT_res.csv,repeated_configuration,"('dense\\DSJC250_5.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POHP_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_POHP_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POP_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_POP_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_SAT_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_SAT_res.csv,repeated_configuration,"('dense\\DSJC250_9.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POHP_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_POHP_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'POHP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POP_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_POP_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'POP', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_SAT_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_SAT_res.csv,repeated_configuration,"('dense\\miles1500.col', 'Incremental', 'SAT', 'PySAT-unspecified', 'unverified')"

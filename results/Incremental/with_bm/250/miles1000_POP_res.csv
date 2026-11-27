@@ -1,4 +1,4 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-IncrementalSAT,POPEncoding,43,SAT,5504,254903,True,0.007034599999315105,0.26276209999923594,0.10508950000075856,0.3748861999993096
-IncrementalSAT,POPEncoding,42,SAT,5504,255031,True,0,9.030000001075678e-05,7.994616100000712,7.994706400000723
-IncrementalSAT,POPEncoding,41,TIMEOUT,5504,255159,True,0,0.0001655000014579855,30.039545600000565,30.039711100002023
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+IncrementalSAT,POPEncoding,43,SAT,5504,143835,True,0.006290100000114762,0.2530423999996856,0.0077264999999897555,0.34814539999933913,0.08108639999954903,True,,,False,43
+IncrementalSAT,POPEncoding,42,SAT,5504,143963,True,0,8.739999975659885e-05,0.18320519999906537,0.18336279999857652,7.019999975454994e-05,True,,,False,42
+IncrementalSAT,POPEncoding,41,TIMEOUT,5504,144091,True,0,0.00015929999972286168,30.05741830000079,30.05764960000124,7.200000072771218e-05,True,solving,,True,42

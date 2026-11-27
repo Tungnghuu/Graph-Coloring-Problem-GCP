@@ -1,2 +1,9 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-RepeatedSolver,POPEncoding,None,NONE,None,None,None,None,None,None,None
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+RepeatedSolver,POPEncoding,93,SAT,23250,2617764,True,0.07008020000102988,5.380845600000612,0.21109859999887703,7.245949000001929,1.5715909999998985,True,,finished,False,93
+RepeatedSolver,POPEncoding,92,SAT,23000,2589616,True,0,5.041956600000049,0.2512673999990511,6.885408899999675,1.5745583999996597,True,,finished,False,92
+RepeatedSolver,POPEncoding,91,SAT,22750,2561468,True,0,5.466983500000424,0.6636230999993131,7.500799900000857,1.3554893000000448,True,,finished,False,91
+RepeatedSolver,POPEncoding,90,SAT,22500,2533320,True,0,4.823890100000426,0.9454236000001401,7.080491099999563,1.2989772000000812,True,,finished,False,90
+RepeatedSolver,POPEncoding,89,SAT,22250,2505172,True,0,4.661638399998992,8.188107700001638,14.315958499999397,1.449264900000344,True,,finished,False,89
+RepeatedSolver,POPEncoding,88,SAT,22000,2477024,True,0,4.963108600000851,3.8577279999990424,10.20332690000032,1.3693056000010984,True,,finished,False,88
+RepeatedSolver,POPEncoding,87,SAT,21750,2448876,True,0,4.651754499998788,11.412703500000134,17.347140500000023,1.267462499999965,True,,finished,False,87
+RepeatedSolver,POPEncoding,86,TIMEOUT,21500,2420728,False,0,4.60933870000008,32.716125799999645,38.54613260000042,1.2019347999994352,True,solving,interrupted,True,87

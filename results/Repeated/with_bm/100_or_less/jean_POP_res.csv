@@ -1,2 +1,2 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-RepeatedSolver,POPEncoding,10,SAT,800,6265,True,0.0021623000502586365,0.01761169999372214,0.009228900074958801,0.02900290011893958
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+RepeatedSolver,POPEncoding,10,SAT,800,3350,True,0.0009741000012581935,0.003321100000903243,0.0010256999994453508,0.007049700001516612,0.00156789999891771,True,,finished,False,10

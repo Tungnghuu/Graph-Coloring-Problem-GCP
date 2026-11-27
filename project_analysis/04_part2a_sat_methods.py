@@ -96,7 +96,7 @@ def part2a(runs, exploratory=False):
             'p2a',
         )
 
-        for metric in ('attempts', 'solver_calls'):
+        for metric in ('attempts',):
             plt.figure(figsize=(8, 5))
 
             for method in methods:

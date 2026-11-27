@@ -105,6 +105,13 @@ def load_runs(out=ROOT / 'processed'):
 
     return run_rows
 
+def pool_exploratory(rows):
+    for row in rows:
+        row['comparison_config'] = 'exploratory-pooled'
+        if row.get('backend') in ('PySAT-unspecified', 'g3'):
+            row['backend'] = 'PySAT-g3'
+    return rows
+
 def clean_runs(rows):
     fatal_quality_flags = (
         'contradictory_bounds',

@@ -79,7 +79,10 @@ def figure_presentation(name):
         if metric in ('paired_time', 'best_colors'):
             notes.append('Shows at most 12 graph IDs; circle = proven optimal, x = not proven optimal.')
         if metric in ('num_variables', 'num_clauses'):
-            notes.append('First attempt, matched by graph and k; median at each vertex count.')
+            notes.append('First attempt, matched by graph and k; median at each vertex count; '
+                         'encoding timeouts (size 0) excluded.')
+            if metric == 'num_variables':
+                notes.append('SAT and POP both use n*k variables, so their lines coincide.')
         if metric in ('attempts_time', 'solver_calls_time'):
             notes.append('x = timeout; observed runtime is not time-to-solution for timed-out runs.')
         if metric == 'attempts_time':

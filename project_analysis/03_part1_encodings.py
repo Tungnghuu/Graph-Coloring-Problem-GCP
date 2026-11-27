@@ -132,7 +132,7 @@ def part1(runs, method='Repeated', exploratory=False):
     for metric in ('num_variables', 'num_clauses'):
         measured_size_rows = [
             row for row in size_rows
-            if row.get(metric) is not None
+            if row.get(metric) is not None and row[metric] > 0
         ]
         matched_size_rows = common(
             measured_size_rows,
@@ -161,11 +161,17 @@ def part1(runs, method='Repeated', exploratory=False):
                 ]
                 median_sizes.append(median(values))
 
+            style = {
+                'SAT': dict(linestyle='--', marker='s', markerfacecolor='none',
+                            markersize=8, zorder=3),
+                'POP': dict(marker='o', zorder=2),
+                'POHP': dict(marker='^', zorder=1),
+            }.get(encoding, dict(marker='o'))
             plt.plot(
                 vertex_counts,
                 median_sizes,
-                marker='o',
                 label=encoding,
+                **style,
             )
 
         plt.xlabel('Vertices')
@@ -320,7 +326,7 @@ def part1(runs, method='Repeated', exploratory=False):
         for metric in ('num_variables', 'num_clauses'):
             measured_size_rows = [
                 row for row in size_rows
-                if row.get(metric) is not None
+                if row.get(metric) is not None and row[metric] > 0
             ]
             comparable_rows = common(
                 measured_size_rows,

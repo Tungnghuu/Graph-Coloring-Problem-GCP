@@ -1,3 +1,3 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-RepeatedSolver,POPEncoding,5,SAT,115,618,True,0.0004957999335601926,0.0019105999963358045,0.0022455999860540032,0.00465199991595
-RepeatedSolver,POPEncoding,4,UNSAT,92,451,True,0,0.0014865000266581774,0.005679699941538274,0.007166199968196452
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+RepeatedSolver,POPEncoding,5,SAT,115,475,True,0.0002168000009987736,0.000973399999566027,0.0005743000001530163,0.002366999999139807,0.0005479000010382151,True,,finished,False,5
+RepeatedSolver,POPEncoding,4,UNSAT,92,380,False,0,0.0007626999995409278,0.001003100000161794,0.002136099998097052,0.00030839999999443535,True,,finished,False,5

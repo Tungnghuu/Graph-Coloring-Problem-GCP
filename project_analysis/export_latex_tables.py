@@ -1,10 +1,11 @@
 from pathlib import Path
-from .analysis_core import clean_runs, load_runs, median
+from .analysis_core import clean_runs, load_runs, median, pool_exploratory
 from .reports import SAT, best_observed_sources, common, stratum
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'tables'
 METHOD = 'Repeated'
+GROUP_ORDER = ('100_or_less', '250', '500', '750', '1000', 'dense')
 
 LATEX_SPECIAL = {
     '\\': r'\textbackslash{}',
@@ -118,15 +119,18 @@ def formula_size_table(runs):
 
 def bounds_table(rows):
     order = {encoding: position for position, encoding in enumerate(SAT)}
+    groups = {name: position for position, name in enumerate(GROUP_ORDER)}
     data = []
-    for row in sorted(rows, key=lambda item: (item['graph_id'], order[item['encoding']])):
+    for row in sorted(rows, key=lambda item: (
+        groups.get(item['group'], len(groups)), item['graph'].lower(), order[item['encoding']],
+    )):
         status = {
             'optimal': 'Proven optimal',
             'feasible': 'Feasible, not proven optimal',
             'unknown': 'Unknown',
         }.get(row['proof'], row['proof'])
         data.append([
-            row['graph_id'],
+            row['graph'],
             row['encoding'],
             fmt(row['best_k']),
             fmt(row['lower_bound']),
@@ -183,7 +187,7 @@ def longtable_file(filename, caption, label, headers, rows):
 
 def main():
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    runs = load_runs()
+    runs = pool_exploratory(load_runs())
     rows = matched_rows(runs)
     table1 = runtime_table(rows)
     table2 = formula_size_table(runs)
@@ -217,7 +221,7 @@ def main():
     )
     longtable_file(
         'table3_bounds_proof.tex',
-        'Best valid upper bound, recorded lower bound, and proof status per graph and encoding. Historical lower bounds may omit original bound calculations.',
+        'Best valid upper bound, lower bound, and proof status per graph and encoding. Lower bound = clique bound used by the benchmark (recomputed for runs without a manifest), raised by any UNSAT result.',
         'bounds-proof',
         ['Graph', 'Encoding', 'Best UB', 'Recorded LB', 'Proof status'],
         table3,

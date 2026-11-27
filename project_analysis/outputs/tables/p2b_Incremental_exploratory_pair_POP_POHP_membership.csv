@@ -498,10 +498,8 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen10_10_POP_res.csv,100_or_less\queen10_10.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen10_10_SAT_res.csv,100_or_less\queen10_10.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POHP_res.csv,dense\queen5_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_POP_res.csv,dense\queen5_5.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen5_5_SAT_res.csv,dense\queen5_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POHP_res.csv,dense\queen6_6.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_POP_res.csv,dense\queen6_6.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen6_6_SAT_res.csv,dense\queen6_6.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen7_7_POHP_res.csv,100_or_less\queen7_7.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\100_or_less\queen7_7_POP_res.csv,100_or_less\queen7_7.col,True,
@@ -522,19 +520,15 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_1_POP_res.csv,250\DSJC125_1.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_1_SAT_res.csv,250\DSJC125_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POHP_res.csv,dense\DSJC125_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_5_SAT_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POHP_res.csv,dense\DSJC125_9.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC125_9_SAT_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_POHP_res.csv,250\DSJC250_1.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_POP_res.csv,250\DSJC250_1.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_1_SAT_res.csv,250\DSJC250_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POHP_res.csv,dense\DSJC250_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_5_SAT_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POHP_res.csv,dense\DSJC250_9.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_POP_res.csv,dense\DSJC250_9.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\DSJC250_9_SAT_res.csv,dense\DSJC250_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\games120_POHP_res.csv,250\games120.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\games120_POP_res.csv,250\games120.col,True,
@@ -543,7 +537,6 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1000_POP_res.csv,250\miles1000.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1000_SAT_res.csv,250\miles1000.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POHP_res.csv,dense\miles1500.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_POP_res.csv,dense\miles1500.col,False,"invalid, incomplete identity or ambiguous repeats"
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles1500_SAT_res.csv,dense\miles1500.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles250_POHP_res.csv,250\miles250.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\250\miles250_POP_res.csv,250\miles250.col,True,
@@ -672,16 +665,16 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\den
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC1000_9_POP_res.csv,dense\DSJC1000_9.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC1000_9_SAT_res.csv,dense\DSJC1000_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_POHP_res.csv,dense\DSJC125_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_POP_res.csv,dense\DSJC125_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_5_SAT_res.csv,dense\DSJC125_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_POHP_res.csv,dense\DSJC125_9.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_POP_res.csv,dense\DSJC125_9.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC125_9_SAT_res.csv,dense\DSJC125_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_POHP_res.csv,dense\DSJC250_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_POP_res.csv,dense\DSJC250_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_5_SAT_res.csv,dense\DSJC250_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_POHP_res.csv,dense\DSJC250_9.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_POP_res.csv,dense\DSJC250_9.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_POP_res.csv,dense\DSJC250_9.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC250_9_SAT_res.csv,dense\DSJC250_9.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC500_5_POHP_res.csv,dense\DSJC500_5.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\DSJC500_5_POP_res.csv,dense\DSJC500_5.col,True,
@@ -714,13 +707,13 @@ C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\den
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\flat300_28_0_POP_res.csv,dense\flat300_28_0.col,True,
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\flat300_28_0_SAT_res.csv,dense\flat300_28_0.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_POHP_res.csv,dense\miles1500.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_POP_res.csv,dense\miles1500.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_POP_res.csv,dense\miles1500.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\miles1500_SAT_res.csv,dense\miles1500.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_POHP_res.csv,dense\queen5_5.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_POP_res.csv,dense\queen5_5.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_POP_res.csv,dense\queen5_5.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen5_5_SAT_res.csv,dense\queen5_5.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_POHP_res.csv,dense\queen6_6.col,False,"invalid, incomplete identity or ambiguous repeats"
-C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_POP_res.csv,dense\queen6_6.col,False,"invalid, incomplete identity or ambiguous repeats"
+C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_POP_res.csv,dense\queen6_6.col,False,unmatched or repeated stratum
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Incremental\with_bm\dense\queen6_6_SAT_res.csv,dense\queen6_6.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\1000\DSJC1000_1_CPLEX_CP_res.csv,1000\DSJC1000_1.col,False,outside comparison scope
 C:\Users\ASUS\Desktop\Graph-Coloring-Problem-GCP\results\Repeated\with_bm\1000\DSJC1000_1_CPLEX_MIP_res.csv,1000\DSJC1000_1.col,False,outside comparison scope

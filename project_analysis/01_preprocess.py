@@ -36,6 +36,20 @@ else:
     )
 
 
+_LOWER_BOUNDS = {}
+
+def benchmark_lower_bound(data, graph_id):
+    if graph_id not in _LOWER_BOUNDS:
+        import sys
+        if str(PROJECT) not in sys.path:
+            sys.path.insert(0, str(PROJECT))
+        from src.chromatic_number.bound_methods.combined import CombinedBounds
+        from src.utils.graph_io import read_col
+
+        graph = read_col(str(Path(data) / graph_id))
+        _LOWER_BOUNDS[graph_id] = CombinedBounds().find_bounds(graph)[0]
+    return _LOWER_BOUNDS[graph_id]
+
 def dataset_index(data):
     graph_index = defaultdict(list)
 
@@ -550,7 +564,13 @@ def preprocess(sources, data, out, expected=None):
                 })
             continue
 
-        run_summary = summarize(parsed_attempts, metadata)
+        summary_metadata = metadata
+        if 'initial_lb' not in metadata and len(graph_matches) == 1:
+            summary_metadata = dict(
+                metadata,
+                initial_lb=benchmark_lower_bound(data, graph_id),
+            )
+        run_summary = summarize(parsed_attempts, summary_metadata)
 
         if not file_rows:
             file_was_unreadable = any(

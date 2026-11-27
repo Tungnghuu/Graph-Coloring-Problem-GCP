@@ -21,7 +21,7 @@ def environment():
         cpu = next(line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name'))
     except (OSError, StopIteration): pass
     try: ram = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
-    except (ValueError, OSError): ram = None
+    except (ValueError, OSError, AttributeError): ram = None
     return dict(cpu=cpu, ram_bytes=ram, os=platform.platform(), python=platform.python_version(), versions=versions)
 
 class ResultsWriter:
