@@ -16,7 +16,6 @@ ENCODINGS = {
 COLOR_COUNT = 15
 TIME_LIMIT = 5
 
-
 def main():
     # Load the graph once so each encoding uses the same input.
     graph = read_col(str(GRAPH_PATH))
@@ -33,7 +32,6 @@ def main():
         for metric, value in result.items():
             print(f"{metric}: {value}")
         print()
-
 
 if __name__ == "__main__":
     main()

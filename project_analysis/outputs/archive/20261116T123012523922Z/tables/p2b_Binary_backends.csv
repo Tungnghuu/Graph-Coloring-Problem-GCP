@@ -1,5 +1,0 @@
-Backend,Common graphs,Runs,Feasible,Optimal,Timeout,Optimal timed n,Median time,IQR time,Median unproven gap
-POHP,0,0,0,0,0,0,,,
-Gurobi_ILP,0,0,0,0,0,0,,,
-CPLEX_MIP,0,0,0,0,0,0,,,
-CPLEX_CP,0,0,0,0,0,0,,,

@@ -1,2 +1,2 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-IncrementalSAT,POPEncoding,49,SAT,10339,450423,True,0.011165699997945921,0.5279083999994327,1.3862176000002364,1.925291699997615
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+IncrementalSAT,POPEncoding,49,SAT,10339,211288,True,0.01512170000023616,0.33911279999847466,0.026615500000843895,0.48713949999910255,0.10628949999954784,True,,,False,49

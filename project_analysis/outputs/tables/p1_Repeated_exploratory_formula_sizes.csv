@@ -1,7 +1,7 @@
 Encoding,Metric,N,Median,Min,Max
-POHP,num_variables,75,11250.0,0.0,93312.0
-POHP,num_clauses,75,136283.0,0.0,4620390.0
-POP,num_variables,75,5625.0,0.0,46656.0
-POP,num_clauses,75,163946.0,0.0,5691789.0
-SAT,num_variables,75,5625.0,0.0,46656.0
-SAT,num_clauses,75,163946.0,0.0,5691789.0
+POHP,num_variables,69,11532.0,88.0,93312.0
+POHP,num_clauses,69,148765.0,276.0,4620390.0
+POP,num_variables,69,5766.0,44.0,46656.0
+POP,num_clauses,69,126294.0,128.0,4481875.0
+SAT,num_variables,69,5766.0,44.0,46656.0
+SAT,num_clauses,69,197525.0,163.0,5691789.0

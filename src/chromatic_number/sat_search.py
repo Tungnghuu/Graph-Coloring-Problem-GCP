@@ -67,8 +67,9 @@ def run_sat_search(strategy, graph, encoding, bounds_method, results_path=None, 
                     low=k+1; lb=max(lb,k+1)
                     if strategy=='repeated': break
                 else:
-                    # Unknown is not an infeasibility certificate: do not advance LB.
-                    reason='solver_timeout' if result.timed_out else 'solver_unknown'; break
+                    reason='solver_timeout' if result.timed_out else 'solver_unknown'
+                    if strategy=='binary': low=k+1
+                    else: break
             finally:
                 backend.close(model); encoding.release()
         if timeout: status='TIMEOUT'

@@ -1,7 +1,0 @@
-A,B,Common cases,Both optimal timed,A median,B median
-POHP,Gurobi_ILP,0,0,,
-POHP,CPLEX_MIP,0,0,,
-POHP,CPLEX_CP,0,0,,
-Gurobi_ILP,CPLEX_MIP,0,0,,
-Gurobi_ILP,CPLEX_CP,0,0,,
-CPLEX_MIP,CPLEX_CP,0,0,,

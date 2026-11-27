@@ -1,2 +1,2 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-BinarySearchSAT,POPEncoding,31,SAT,5735,209001,True,0.013140900060534477,0.28372010006569326,0.08378830004949123,0.38064930017571896
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+BinarySearchSAT,POPEncoding,31,SAT,5735,128092,True,0.015049800000269897,0.22730310000042664,0.006756700000551064,0.3121740000005957,0.061480099999243976,True,,finished,False,31

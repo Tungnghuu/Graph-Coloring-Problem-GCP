@@ -1,2 +1,2 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-IncrementalSAT,POPEncoding,169,TIMEOUT,0,0,False,0.34284690000276896,30.00001699999848,0,30.342863900001248
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+IncrementalSAT,POPEncoding,169,TIMEOUT,0,0,False,0.43624280000221916,30.000024299995857,0,30.436267099998076,,False,encoding,,True,

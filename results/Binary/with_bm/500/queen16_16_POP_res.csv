@@ -1,4 +1,4 @@
-method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time
-BinarySearchSAT,POPEncoding,21,SAT,5376,186946,True,0.028831999999965774,0.31997510000019247,0.1858460000003106,0.5346531000004688
-BinarySearchSAT,POPEncoding,18,TIMEOUT,4608,153337,True,0,0.3570294000001013,30.084804500000246,30.441833900000347
-BinarySearchSAT,POPEncoding,19,SAT,4864,164283,True,0,0.3082273999998506,14.080409500000314,14.388636900000165
+method,encoding,k,status,num_variables,num_clauses,valid_coloring,bounds_time,encoding_time,solving_time,total_time,setup_time,solver_called,timeout_phase,backend_status,timed_out,best_k
+BinarySearchSAT,POPEncoding,21,SAT,5376,138117,True,0.010278399997332599,0.18451700000150595,0.0067265000034240074,0.26666909999767086,0.06367930000124034,True,,finished,False,21
+BinarySearchSAT,POPEncoding,18,TIMEOUT,4608,118386,False,0,0.2037179999970249,30.31837870000163,30.57561999999598,0.050333600003796164,True,solving,interrupted,True,21
+BinarySearchSAT,POPEncoding,19,SAT,4864,124963,True,0,0.1937465000009979,0.22498430000268854,0.4777830000020913,0.057555700004741084,True,,finished,False,19
